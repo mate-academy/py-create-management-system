@@ -75,9 +75,9 @@ Returns all groups specialties' names without repetition.
 Reads data from the file `“students.pickle”`.
 Returns a list of all class `Student` instances.
 
-> Hint!
-> The module `pickle` returns only one recorded object. 
-> 
->It is necessary to implement the reading of each instance from the file for the functions `read_students_information` and `read_groups_information`
+###### Hint!
+###### The module `pickle` returns only one recorded object. 
+
+###### It is necessary to implement the reading of each instance from the file for the functions `read_students_information` and `read_groups_information`
 
 Implement the task described [here](app/main.py)
