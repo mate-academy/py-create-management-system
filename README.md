@@ -34,7 +34,8 @@ It has the following attributes:
 **Important! To import datetime use the following syntax:**
 
 ```python
-from datetime import datetime ```
+from datetime import datetime
+```
 
 3. **Group**
 
@@ -47,7 +48,9 @@ Also implement 4 functions, using module `pickle`.
 
 You can import this module at this way:
 
-```import pickle```
+```python
+import pickle
+```
  
 1. **write_groups_information**
 
