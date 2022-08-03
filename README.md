@@ -8,20 +8,20 @@ You have to implement the above system, using the `dataclasses` module.
 
 You can import the module in such way:
  
-```
-Import dataclasses
+```python
+import dataclasses
 ```
  
 Let`s implement 3 classes:
  
-**Specialty**
+1. **Specialty**
 
 It has the following attributes:
 
 - `name`
 - `number`
  
-**Student**
+2. **Student**
 
 - `first_name`
 - `last_name`
@@ -31,22 +31,23 @@ It has the following attributes:
 - `phone_number`
 - `address`
 
-_Important! To import datetime use the following syntax:_
+**Important! To import datetime use the following syntax:**
 
-```from datetime import datetime ```
+```python
+from datetime import datetime ```
 
-**Group**
+3. **Group**
 
-- `specialty` - a specialty, has be an instance of  the class “Specialty”
+- `specialty` - a specialty, has be an instance of  the class `Specialty`
 - `course` - course number/year of study
-- `students` - a list of students studying in this group. This should be a list of instances of the class “Student”. 
+- `students` - a list of students studying in this group. This should be a list of instances of the class `Student`. 
 
 
 Also implement 4 functions, using module `pickle`.
 
 You can import this module at this way:
 
-```Import pickle```
+```import pickle```
  
 1. **write_groups_information**
 
