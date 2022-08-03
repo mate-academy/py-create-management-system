@@ -66,7 +66,7 @@ This function returns the number of students.
 Function reads data from the file `“groups.pickle”`.
 Returns all groups specialties' names without repetition.
  
-4. **read_students_information** - 
+4. **read_students_information** 
 
 Reads data from the file `“students.pickle”`.
 Returns a list of all class `Student` instances.
