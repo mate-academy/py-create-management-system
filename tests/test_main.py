@@ -16,16 +16,6 @@ from app.main import (
 )
 
 
-@pytest.fixture
-def specialty_init():
-    return Specialty("Math and Physic", 1)
-
-
-@pytest.fixture
-def student_init():
-    return Student("Ivan", "Ivanov", date.today(), 87.5, True, "+380999999999", "Kyiv")
-
-
 def basic_student(
     first_name="Ivan",
     last_name="Ivanov",
@@ -38,6 +28,16 @@ def basic_student(
     return Student(
         first_name, last_name, birth_date, mark, has_scholarship, phone, city
     )
+
+
+@pytest.fixture
+def specialty_init():
+    return Specialty("Math and Physic", 1)
+
+
+@pytest.fixture
+def student_init():
+    return basic_student()
 
 
 class CleanUpFile:
