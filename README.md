@@ -19,20 +19,20 @@ Let`s implement 3 classes:
 
 It has the following attributes:
 
-- `name` — specialty's name;
-- `number` — specialty's number.
+- `name`;
+- `number`.
  
 2. **Student**
 
 It has the following attributes:
 
-- `first_name` — name;
-- `last_name` — last name;
-- `birth_date` — student's date of birth;
+- `first_name`;
+- `last_name`;
+- `birth_date` ;
 - `average_mark` — average score of the previous year (or average score of entrance exams for the first-course students), float number;
 - `has_scholarship` — information on whether the student receives a scholarship. This is a bool value;
-- `phone_number` — student's phone number;
-- `address` — student's residence.
+- `phone_number`;
+- `address`.
 
 **Please note:** to import datetime, use the following syntax:
 
