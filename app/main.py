@@ -29,16 +29,13 @@ class Group:
 
 
 def write_groups_information(groups: List[Group]):
-    result = []
 
     with open("groups.pickle", "wb") as f:
         pickle.dump(groups, f)
 
-    for group in groups:
-        result.append(len(group.students))
+    result = [len(group.students) for group in groups]
 
-    if len(result) > 0:
-        return max(result)
+    return max(result) if len(result) > 0 else []
 
 
 def write_students_information(students: List[Student]):
