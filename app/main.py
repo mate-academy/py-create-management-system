@@ -6,39 +6,41 @@ import pickle
 
 @dataclasses.dataclass
 class Specialty:
-    name: str
-    number: int
+    name: str = None
+    number: int = None
 
 
 @dataclasses.dataclass
 class Student:
-    first_name: str
-    last_name: str
-    birth_date: date
-    average_mark: float
-    has_scholarship: bool
-    phone_number: str
-    address: str
+    first_name: str = None
+    last_name: str = None
+    birth_date: date = None
+    average_mark: float = None
+    has_scholarship: bool = None
+    phone_number: str = None
+    address: str = None
 
 
 @dataclasses.dataclass
 class Group:
-    specialty: Specialty
-    course: int
-    students: List[Student]
+    specialty: Specialty = None
+    course: int = None
+    students: List[Student] = None
 
 
 def write_groups_information(list_groups):
-    for group in list_groups:
-        with open("groups.pickle", "wb") as f:
+
+    with open("groups.pickle", "wb") as f:
+        for group in list_groups:
             pickle.dump(group, f)
-    maximum_students = max([len(num.students) for num in list_groups])
+    maximum_students = max([len(num.students) for num in list_groups])\
+        if len(list_groups) else 0
     return maximum_students
 
 
 def write_students_information(list_student):
-    for student in list_student:
-        with open("students.pickle", "wb") as f:
+    with open("students.pickle", "wb") as f:
+        for student in list_student:
             pickle.dump(student, f)
     number_students = len(list_student)
     return number_students
@@ -46,23 +48,23 @@ def write_students_information(list_student):
 
 def read_groups_information():
     groups = []
-    while True:
+    with open("groups.pickle", "rb") as f:
         try:
-            with open("groups.pickle", "rb") as f:
+            while True:
                 group = pickle.load(f)
-            groups.append(group.specialty.name)
+                groups.append(group.specialty.name)
         except EOFError:
-            break
+            pass
     return set(groups)
 
 
 def read_students_information():
     students = []
-    while True:
+    with open("students.pickle", "rb") as f:
         try:
-            with open("students.pickle", "rb") as f:
+            while True:
                 group = pickle.load(f)
-            students.append(group)
+                students.append(group)
         except EOFError:
-            break
+            pass
     return students
