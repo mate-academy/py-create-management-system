@@ -14,7 +14,7 @@ class Specialty:
 class Student:
     first_name: str
     last_name: str
-    birth_date: str
+    birth_date: datetime.date
     average_mark: float
     has_scholarship: bool
     phone_number: int
@@ -23,8 +23,8 @@ class Student:
 
 @dataclasses.dataclass
 class Group:
-    specialty: object
-    course: datetime.now().year
+    specialty:Specialty
+    course: int
     students: List[Student]
 
 
