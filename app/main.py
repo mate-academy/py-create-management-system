@@ -52,7 +52,6 @@ def read_groups_information() -> set:
     result = set(
         group.specialty.name for group in groups_info
     )
-
     return result
 
 
