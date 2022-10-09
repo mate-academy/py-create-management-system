@@ -32,7 +32,7 @@ def write_file(data: list[Group | Student], filename: str) -> None:
         pickle.dump(data, f)
 
 
-def read_file(filename) -> list[Group | Student]:
+def read_file(filename: str) -> list[Group | Student]:
     with open(filename, "rb") as f:
         return pickle.load(f)
 
