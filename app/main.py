@@ -43,7 +43,7 @@ def write_students_information(student: List[Student]) -> int:
     return len(student)
 
 
-def read_groups_information():
+def read_groups_information() -> set:
     with open("groups.pickle", "rb") as f:
         groups = pickle.load(f)
     return set(group.specialty.name for group in groups)
