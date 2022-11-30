@@ -52,26 +52,14 @@ class CleanUpFile:
             os.remove(self.filename)
 
 
-@pytest.mark.parametrize(
-    "attribute",
-    [
-        "name",
-        "number"
-    ]
-)
+@pytest.mark.parametrize("attribute", ["name", "number"])
 def test_specialty_instance(attribute, specialty_init):
     assert hasattr(
         specialty_init, attribute
     ), f"Specialty instance should have attribute '{attribute}'"
 
 
-@pytest.mark.parametrize(
-    "attribute,attr_type",
-    [
-        ("name", str),
-        ("number", int)
-    ]
-)
+@pytest.mark.parametrize("attribute,attr_type", [("name", str), ("number", int)])
 def test_specialty_instance_type(attribute, attr_type, specialty_init):
     assert isinstance(
         getattr(specialty_init, attribute), attr_type
@@ -321,9 +309,7 @@ def test_read_groups_information(groups, result):
     "students",
     [
         [],
-        [
-            basic_student()
-        ],
+        [basic_student()],
         [
             basic_student(),
             basic_student(first_name="Mariia", mark=72.9),
