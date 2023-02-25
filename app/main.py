@@ -58,7 +58,7 @@ def read_students_information() -> List[Student]:
         while True:
             try:
                 student = pickle.load(f)
-            except EOFError:
+            except Exception:
                 break
             else:
                 students.append(student)
