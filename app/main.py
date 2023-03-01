@@ -40,7 +40,7 @@ def write_students_information(students: list) -> int:
     with open("students.pickle", "wb") as f:
         for student in students:
             pickle.dump(student, f)
-        return len(student)
+        return len(students)
 
 
 def read_groups_information() -> list:
