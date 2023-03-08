@@ -29,9 +29,8 @@ class Group:
 
 
 def write_groups_information(groups: List[Group]) -> int:
-    with open("groups.pickle", "wb") as pickle_file:
-        for group in groups:
-            pickle.dump(group, pickle_file)
+    with open("groups.pickle", "wb") as groups_file:
+        pickle.dump(groups, groups_file)
     return (
         max([len(group.students) for group in groups])
         if groups else 0
@@ -39,29 +38,18 @@ def write_groups_information(groups: List[Group]) -> int:
 
 
 def write_students_information(students: List[Student]) -> int:
-    with open("students.pickle", "wb") as pickle_file:
-        for student in students:
-            pickle.dump(student, pickle_file)
+    with open("students.pickle", "wb") as students_file:
+        pickle.dump(students, students_file)
     return len(students)
 
 
 def read_groups_information() -> set:
-    with open("groups.pickle", "rb") as pickle_file:
-        try:
-            groups_specialties = []
-            while True:
-                group = pickle.load(pickle_file)
-                groups_specialties.append(group.specialty.name)
-        except EOFError:
-            return set(groups_specialties)
+    with open("groups.pickle", "rb") as groups_file:
+        groups = pickle.load(groups_file)
+        return set(group.specialty.name for group in groups)
 
 
 def read_students_information() -> List:
-    with open("students.pickle", "rb") as pickle_file:
-        try:
-            students = []
-            while True:
-                student = pickle.load(pickle_file)
-                students.append(student)
-        except EOFError:
-            return students
+    with open("students.pickle", "rb") as students_file:
+        students = pickle.load(students_file)
+        return students
