@@ -46,8 +46,7 @@ def read_groups_information() -> list:
         groups = pickle.load(read_groups_file)
         for group in groups:
             specialties.add(group.specialty.name)
-    specialties = list(specialties)
-    return specialties
+    return list(specialties)
 
 
 def read_students_information() -> list:
