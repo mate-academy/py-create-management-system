@@ -1,7 +1,7 @@
 import dataclasses
+import pickle
 from datetime import datetime
 from typing import List
-import pickle
 
 
 @dataclasses.dataclass
