@@ -29,12 +29,12 @@ class Group:
 
 
 def write_groups_information(groups: List[Group]) -> int:
-    max_number_of_students = max(
+    max_num_of_students = max(
         [len(group.students) for group in groups]
     ) if len(groups) > 0 else 0
     with open("groups.pickle", "wb") as f:
         pickle.dump(groups, f)
-    return max_number_of_students
+    return max_num_of_students
 
 
 def write_students_information(students: List[Student]) -> int:
