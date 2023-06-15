@@ -1,16 +1,16 @@
-import dataclasses
 import pickle
 from datetime import datetime
 from typing import List
+from dataclasses import dataclass
 
 
-@dataclasses.dataclass
+@dataclass
 class Specialty:
     name: str
     number: int
 
 
-@dataclasses.dataclass
+@dataclass
 class Student:
     first_name: str
     last_name: str
@@ -21,7 +21,7 @@ class Student:
     address: str
 
 
-@dataclasses.dataclass
+@dataclass
 class Group:
     specialty: Specialty
     course: int
