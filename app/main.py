@@ -55,10 +55,3 @@ def read_students_information() -> List[Student]:
     with open("students.pickle", "rb") as file_obj:
         students = pickle.load(file_obj)
     return students
-
-
-
-
-
-
-
