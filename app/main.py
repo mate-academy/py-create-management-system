@@ -46,12 +46,7 @@ def read_groups_information() -> list:
     with open("groups.pickle", "rb") as group_file:
         groups = pickle.load(group_file)
 
-    result = []
-
-    for group in groups:
-        if group.specialty.name not in result:
-            result.append(group.specialty.name)
-    return result
+    return list(set(group.specialty.name for group in groups))
 
 
 def read_students_information() -> None:
