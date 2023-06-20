@@ -20,6 +20,7 @@ class Student:
     phone_number: str
     address: str
 
+
 @dataclasses.dataclass
 class Group:
     specialty: Specialty
