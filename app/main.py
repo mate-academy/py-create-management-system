@@ -46,7 +46,9 @@ def read_from_pickle(file_name: str) -> list[Student | Group]:
         return items
 
 
-def read_groups_information(file_name: str = "groups.pickle") -> set:
+def read_groups_information(
+        file_name: str = "groups.pickle"
+) -> set[str]:
     groups = read_from_pickle(file_name)
     return set(group.specialty.name for group in groups)
 
