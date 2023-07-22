@@ -40,7 +40,7 @@ def write_students_information(students: list[Student]) -> int:
     return len(students)
 
 
-def read_from_pickle(file_name: str) -> list:
+def read_from_pickle(file_name: str) -> list[Student]:
     with open(file_name, "rb") as pickle_file:
         items = pickle.load(pickle_file)
         return items
