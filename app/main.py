@@ -57,7 +57,8 @@ def read_groups_information(file_name: str = GROUP_PICKL) -> list:
     return list(dict.fromkeys(specialties))
 
 
-def read_students_information(file_name: str = STUDENTS_PICKL) -> list[Student]:
+def read_students_information(file_name: str = STUDENTS_PICKL
+                              ) -> list[Student]:
     output = []
     for student in get_pickle_data(file_name):
         if student not in output:
