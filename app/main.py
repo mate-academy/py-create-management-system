@@ -1,6 +1,7 @@
-import dataclasses
 import pickle
+import os
 from typing import List
+import dataclasses
 
 
 @dataclasses.dataclass
@@ -28,13 +29,13 @@ class Group:
 
 
 def write_groups_information(groups: List[Group]) -> int:
+    if not groups:
+        return 0  # Return 0 when the groups list is empty
+
+    max_students = max(len(group.students) for group in groups)
+
     with open("groups.pickle", "wb") as file:
         pickle.dump(groups, file)
-
-    if groups:
-        max_students = max(len(group.students) for group in groups)
-    else:
-        max_students = 0
     return max_students
 
 
@@ -46,14 +47,20 @@ def write_students_information(students: List[Student]) -> int:
 
 def read_groups_information() -> List[str]:
     specialties = set()
-    with open("groups.pickle", "rb") as file:
-        groups = pickle.load(file)
-        for group in groups:
-            specialties.add(group.specialty.name)
-    return list(specialties)
+    if os.path.exists("groups.pickle"):
+        with open("groups.pickle", "rb") as file:
+            groups = pickle.load(file)
+            for group in groups:
+                specialties.add(group.specialty.name)
+        return list(specialties)
+    else:
+        return []
 
 
 def read_students_information() -> List[Student]:
-    with open("students.pickle", "rb") as file:
-        students = pickle.load(file)
-    return students
+    if os.path.exists("students.pickle"):
+        with open("students.pickle", "rb") as file:
+            students = pickle.load(file)
+        return students
+    else:
+        return []
