@@ -48,7 +48,6 @@ def write_students_information(students_info: list[Student]) -> int:
 def read_groups_information() -> set:
     with open("groups.pickle", "rb") as file:
         groups = pickle.load(file)
-
     return set(group.specialty.name for group in groups)
 
 
