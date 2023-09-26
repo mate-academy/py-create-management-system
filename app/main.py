@@ -34,7 +34,7 @@ def write_groups_information(groups: List[Group]) -> int:
         pickle.dump(groups, file)
     for unit in groups:
         for student in unit.students:
-            if student.first_name in student:
+            if student.first_name is not None:
                 max_students_num += len(unit.students)
 
     return max_students_num
