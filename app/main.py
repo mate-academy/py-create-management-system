@@ -31,7 +31,7 @@ def write_groups_information(groups: str) -> None:
         pickle.dump(groups, f)
 
     if groups:
-        max_students = max(len(group.students) 
+        max_students = max(len(group.students)
                            for group in groups)
         return max_students
     else:
@@ -49,7 +49,7 @@ def read_groups_information() -> None:
         with open("groups.pickle", "rb") as f:
             groups = pickle.load(f)
         # Extract and return a list of unique specialty names
-        specialty_names = list(set(group.specialty.name 
+        specialty_names = list(set(group.specialty.name
                                    for group in groups))
         return specialty_names
     except FileNotFoundError:
