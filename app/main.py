@@ -26,36 +26,37 @@ class Group:
     students: list
 
 
-def write_groups_information(groups):
+def write_groups_information(groups: str) -> None:
     with open("groups.pickle", "wb") as f:
         pickle.dump(groups, f)
 
-    # Calculate and return the maximum number of students in a group if there are groups
     if groups:
-        max_students = max(len(group.students) for group in groups)
+        max_students = max(len(group.students) 
+                           for group in groups)
         return max_students
     else:
         return 0  # Return 0 if there are no groups
 
 
-def write_students_information(students):
+def write_students_information(students: str) -> None:
     with open("students.pickle", "wb") as f:
         pickle.dump(students, f)
     return len(students)
 
 
-def read_groups_information():
+def read_groups_information() -> None:
     try:
         with open("groups.pickle", "rb") as f:
             groups = pickle.load(f)
         # Extract and return a list of unique specialty names
-        specialty_names = list(set(group.specialty.name for group in groups))
+        specialty_names = list(set(group.specialty.name 
+                                   for group in groups))
         return specialty_names
     except FileNotFoundError:
         return []
 
 
-def read_students_information():
+def read_students_information() -> None:
     try:
         with open("students.pickle", "rb") as f:
             students = pickle.load(f)
