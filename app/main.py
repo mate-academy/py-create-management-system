@@ -29,15 +29,15 @@ class Group:
 
 
 def write_groups_information(groups: List[Group]) -> int:
-    max_students_num = 0
+    max_students_num = []
     with open("groups.pickle", "wb") as file:
         pickle.dump(groups, file)
     for unit in groups:
         for student in unit.students:
             if student.first_name is not None:
-                max_students_num += len(unit.students)
+                max_students_num.append(len(unit.students))
 
-    return max_students_num
+    return max(max_students_num)
 
 
 def write_students_information(pupil: List[Student]) -> int:
