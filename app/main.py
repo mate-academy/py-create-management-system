@@ -35,7 +35,7 @@ def write_groups_information(groups: List[Group]) -> int:
     for unit in groups:
         max_students_num.append(len(unit.students))
 
-    if max_students_num is not None:
+    if max_students_num:
         return max(max_students_num)
 
 
