@@ -1,6 +1,6 @@
+import pickle
 from dataclasses import dataclass
 from datetime import datetime
-import pickle
 from typing import List
 
 
