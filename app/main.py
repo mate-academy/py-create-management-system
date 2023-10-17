@@ -5,7 +5,7 @@ from typing import List
 
 
 @dataclass
-class Speciality:
+class Specialty:
     name: str
     number: int
 
@@ -23,7 +23,7 @@ class Student:
 
 @dataclass
 class Group:
-    speciality: Speciality
+    specialty: Specialty
     course: int
     students: List[Student]
 
