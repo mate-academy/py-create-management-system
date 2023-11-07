@@ -56,4 +56,5 @@ def read_groups_information() -> list[Group]:
 def read_students_information() -> list[Student]:
     with open("students.pickle", "rb") as file:
         students = pickle.load(file)
+
         return students
