@@ -45,9 +45,7 @@ def write_students_information(students: List[Student]) -> int:
 
 def read_groups_information() -> list:
     with open("groups.pickle", "rb") as f:
-        groups = load(f)
-
-        return list(set(group.specialty.name for group in groups))
+        return list(set(group.specialty.name for group in load(f)))
 
 
 def read_students_information() -> List[Student]:
