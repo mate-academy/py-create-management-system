@@ -28,8 +28,8 @@ class Group:
 
 
 def write_groups_information(groups: list[Group]) -> int:
-    if groups:
-        with open("groups.pickle", "wb") as groups_pickle:
+    with open("groups.pickle", "wb") as groups_pickle:
+        if groups:
             pickle.dump(groups, groups_pickle)
             return max([len(group.students) for group in groups])
 
