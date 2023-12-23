@@ -1,6 +1,6 @@
 import dataclasses as dc
-from datetime import datetime
 import pickle
+from datetime import datetime
 
 
 @dc.dataclass
@@ -26,6 +26,9 @@ class Group:
     specialty: Specialty
     students: list[Student]
 
+    def __gt__(self, other):
+        return len(self.students) > len(other.students)
+
 
 def write_groups_information(groups: list[Group]) -> int:
     with open("groups.pickle", "wb") as f:
@@ -34,7 +37,7 @@ def write_groups_information(groups: list[Group]) -> int:
         for group in groups:
             if len(group.students) > max_students_in_group:
                 max_students_in_group = len(group.students)
-                return max_students_in_group
+        return max_students_in_group
 
 
 def write_students_information(students: list[Student]) -> int:
@@ -46,10 +49,10 @@ def write_students_information(students: list[Student]) -> int:
 def read_groups_information() -> set:
     with open("groups.pickle", "rb") as f:
         groups = pickle.load(f)
-        return set(groups) if len(groups) else []
+        return set([group.specialty.name for group in groups]) if len(groups) else []
 
 
 def read_students_information() -> set:
     with open("students.pickle", "rb") as f:
         students = pickle.load(f)
-        return set(students) if len(students) else []
+        return students if len(students) else []
