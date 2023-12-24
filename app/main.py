@@ -26,7 +26,7 @@ class Group:
     course: int
     students: list[Student]
 
-    def __gt__(self, other):
+    def __gt__(self, other: "Group") -> bool:
         return len(self.students) > len(other.students)
 
 
@@ -49,7 +49,8 @@ def write_students_information(students: list[Student]) -> int:
 def read_groups_information() -> set:
     with open("groups.pickle", "rb") as f:
         groups = pickle.load(f)
-        return set([group.specialty.name for group in groups]) if len(groups) else []
+        return (set([group.specialty.name for group in groups])
+                if len(groups) else [])
 
 
 def read_students_information() -> set:
