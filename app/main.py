@@ -22,8 +22,8 @@ class Student:
 
 @dc.dataclass
 class Group:
-    course: int
     specialty: Specialty
+    course: int
     students: list[Student]
 
     def __gt__(self, other):
