@@ -33,7 +33,9 @@ def write_groups_information(
     with open("groups.pickle", "wb") as output:
         for group in input_data:
             pickle.dump(group, output)
-    return max([len(group.students) for group in input_data])
+    return max([len(group.students) for group in input_data]) \
+        if len([len(group.students) for group in input_data]) > 0 \
+        else []
 
 
 def write_students_information(
@@ -46,15 +48,13 @@ def write_students_information(
 
 
 def read_groups_information(
-        file: str = "groups.pickle"
+        file_path: str = "groups.pickle"
 ) -> list[str]:
     objects = []
-    with open(file, "rb") as input_file:
-        # data = pickle.load(input_file)
+    with open(file_path, "rb") as input_file:
         while True:
             try:
-                obj = pickle.load(input_file)
-                objects.append(obj)
+                objects.append(pickle.load(input_file))
             except EOFError:
                 # Reached the end of the file
                 break
@@ -62,8 +62,13 @@ def read_groups_information(
 
 
 def read_students_information(
-        file: str = "students.pickle"
+        file_path: str = "students.pickle"
 ) -> list[Student]:
-    with open(file, "rb") as input_file:
-        data = pickle.load(input_file)
-    return data
+    objects = []
+    with open(file_path, "rb") as input_file:
+        while True:
+            try:
+                objects.append(pickle.load(input_file))
+            except EOFError:
+                break
+    return objects
