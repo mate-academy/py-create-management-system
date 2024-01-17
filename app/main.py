@@ -5,7 +5,10 @@ from datetime import datetime
 
 @dataclass
 class Specialty:
-    def __init__(self, name: str, number: int) -> None:
+    def __init__(self,
+                 name: str,
+                 number: int
+                 ) -> None:
         self.name = name
         self.number = number
 
@@ -33,7 +36,12 @@ class Student:
 
 @dataclass
 class Group:
-    def __init__(self, specialty: Specialty, course: int, students: list[Student]) -> None:
+    def __init__(
+            self,
+            specialty: Specialty,
+            course: int,
+            students: list[Student]
+    ) -> None:
         self.specialty = specialty
         self.course = course
         self.students = students
@@ -43,7 +51,8 @@ def write_groups_information(list_of_group: list[Group]) -> int:
     with open("groups.pickle", "wb") as f:
         pickle.dump(list_of_group, f)
 
-    return max((len(students.students) for students in list_of_group), default=0)
+    return max((len(students.students)
+                for students in list_of_group), default=0)
 
 
 def write_students_information(list_of_students: list[Student]) -> int:
