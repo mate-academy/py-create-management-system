@@ -6,7 +6,6 @@ from dataclasses import dataclass
 class Specialty:
     name: str
     number: int
-    pass
 
 
 @dataclass
@@ -18,7 +17,6 @@ class Student:
     has_scholarship: bool
     phone_number: str
     address: str
-    pass
 
 
 @dataclass
