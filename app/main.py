@@ -28,6 +28,7 @@ class Student:
 @dataclass
 class Group:
     list_of_group_instances = []
+
     specialty: Specialty
     course: str
     students: list[Student]
@@ -36,10 +37,10 @@ class Group:
         Group.list_of_group_instances.append(self)
 
 
-def read_groups_information() -> set:
+def read_groups_information(groups_file="groups.pickle") -> set:
     all_groups = list()
     specialities = set()
-    with open("groups.pickle", "rb") as file:
+    with open(groups_file, "rb") as file:
         try:
             while True:
                 all_groups.append(pickle.load(file))
@@ -49,9 +50,12 @@ def read_groups_information() -> set:
     return specialities
 
 
-def write_groups_information() -> int:
+def write_groups_information(groups=None) -> int:
+    counter = 0
+    if groups is None:
+        groups = Group.list_of_group_instances
     with open("groups.pickle", "wb") as file:
-        for group in Group.list_of_group_instances:
+        for group in groups:
             pickle.dump(group, file)
 
     total_student_counter = 0
@@ -61,16 +65,21 @@ def write_groups_information() -> int:
     return total_student_counter
 
 
-def write_students_information() -> int:
+def write_students_information(students=None) -> int:
+    counter = 0
+    if students is None:
+        students = Student.list_of_student
+
     with open("students.pickle", "wb") as file:
-        for student in Student.list_of_student:
+        for student in students:
             pickle.dump(student, file)
-    return len(Student.list_of_student)
+            counter += 1
+    return counter
 
 
-def read_students_information() -> list:
+def read_students_information(students_file="students.pickle") -> list:
     all_student = list()
-    with open("students.pickle", "rb") as file:
+    with open(students_file, "rb") as file:
         try:
             while True:
                 all_student.append(pickle.load(file))
