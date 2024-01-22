@@ -32,7 +32,6 @@ def read_groups_information(groups_file: str = "groups.pickle") \
         -> list[Specialty]:
     with open(groups_file, "rb") as file:
         result = pickle.load(file)
-    tmm = "".join(result)
 
     return [result.specialty.name]
 
