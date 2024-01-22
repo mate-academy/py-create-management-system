@@ -11,7 +11,6 @@ class Specialty:
 
 @dataclass
 class Student:
-    list_of_student = []
 
     first_name: str
     last_name: str
@@ -21,67 +20,44 @@ class Student:
     phone_number: int
     address: str
 
-    def __post_init__(self) -> None:
-        Student.list_of_student.append(self)
-
 
 @dataclass
 class Group:
-    list_of_group_instances = []
-
     specialty: Specialty
     course: str
     students: list[Student]
 
-    def __post_init__(self) -> None:
-        Group.list_of_group_instances.append(self)
 
-
-def read_groups_information(groups_file="groups.pickle") -> set:
-    all_groups = list()
-    specialities = set()
+def read_groups_information(groups_file: str = "groups.pickle") \
+        -> list[Specialty]:
     with open(groups_file, "rb") as file:
-        try:
-            while True:
-                all_groups.append(pickle.load(file))
-        except EOFError:
-            for group in all_groups:
-                specialities.add(group.specialty)
-    return specialities
+        result = pickle.load(file)
+    tmm = "".join(result)
+
+    return [result.specialty.name]
 
 
-def write_groups_information(groups=None) -> int:
-    counter = 0
-    if groups is None:
-        groups = Group.list_of_group_instances
-    with open("groups.pickle", "wb") as file:
-        for group in groups:
-            pickle.dump(group, file)
-
+def write_groups_information(groups: list[Group]) -> int:
     total_student_counter = 0
-    for group in Group.list_of_group_instances:
-        total_student_counter += len(group.students)
+
+    for group in groups:
+        if total_student_counter < len(group.students):
+            total_student_counter = len(group.students)
+        with open("groups.pickle", "wb") as file:
+            pickle.dump(group, file)
 
     return total_student_counter
 
 
-def write_students_information(students=None) -> int:
-    counter = 0
-    if students is None:
-        students = Student.list_of_student
-
+def write_students_information(students: list[Student]) -> int:
     with open("students.pickle", "wb") as file:
-        for student in students:
-            pickle.dump(student, file)
-            counter += 1
-    return counter
+        pickle.dump(students, file)
+    if len(students) == 0:
+        return 0
+    return len(students)
 
 
-def read_students_information(students_file="students.pickle") -> list:
-    all_student = list()
-    with open(students_file, "rb") as file:
-        try:
-            while True:
-                all_student.append(pickle.load(file))
-        except EOFError:
-            return all_student
+def read_students_information() -> list:
+    with open("students.pickle", "rb") as file:
+        result = pickle.load(file)
+    return result
