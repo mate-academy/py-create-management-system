@@ -11,7 +11,6 @@ class Specialty:
 
 @dataclass
 class Student:
-
     first_name: str
     last_name: str
     birth_date: datetime.date
@@ -30,10 +29,18 @@ class Group:
 
 def read_groups_information(groups_file: str = "groups.pickle") \
         -> list[Specialty]:
-    with open(groups_file, "rb") as file:
-        result = pickle.load(file)
+    groups = []
+    with open("groups.pickle", "rb") as file:
+        try:
+            while True:
+                group = pickle.load(file)
+                groups.append(group.specialty.name)
+        except EOFError:
+            pass
+        groups = set(groups)
+        groups = list(groups)
 
-    return [result.specialty.name]
+        return groups
 
 
 def write_groups_information(groups: list[Group]) -> int:
