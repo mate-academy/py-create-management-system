@@ -29,18 +29,17 @@ class Group:
 
 def read_groups_information(groups_file: str = "groups.pickle") \
         -> list[Specialty]:
-    groups = []
-    with open("groups.pickle", "rb") as file:
+    group = ""
+    with open(groups_file, "rb") as file:
         try:
             while True:
-                group = pickle.load(file)
-                groups.append(group.specialty.name)
+                groups = pickle.load(file)
         except EOFError:
             pass
-        groups = set(groups)
-        groups = list(groups)
 
-        return groups
+        specialties_names = set(group.specialty.name for group in groups)
+
+        return list(specialties_names)
 
 
 def write_groups_information(groups: list[Group]) -> int:
@@ -49,8 +48,9 @@ def write_groups_information(groups: list[Group]) -> int:
     for group in groups:
         if total_student_counter < len(group.students):
             total_student_counter = len(group.students)
-        with open("groups.pickle", "wb") as file:
-            pickle.dump(group, file)
+
+    with open("groups.pickle", "wb") as file:
+        pickle.dump(groups, file)
 
     return total_student_counter
 
