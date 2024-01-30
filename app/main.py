@@ -29,7 +29,6 @@ class Group:
 
 def read_groups_information(groups_file: str = "groups.pickle") \
         -> list[Specialty]:
-    group = ""
     with open(groups_file, "rb") as file:
         try:
             while True:
