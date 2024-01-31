@@ -51,4 +51,3 @@ def read_students_information() -> tuple:
     with open("students.pickle", "rb") as f:
         students = pickle.load(f)
     return students
-    
