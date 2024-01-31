@@ -1,6 +1,7 @@
 from dataclasses import dataclass
-from datetime import datetime
+
 import pickle
+
 
 @dataclass
 class Specialty:
@@ -39,15 +40,15 @@ def write_students_information(students: list[Student]) -> int:
     return len(students)
 
 
-def read_groups_information():
+def read_groups_information() -> tuple:
     with open("groups.pickle", "rb") as f:
         groups = pickle.load(f)
     specialty_names = set(gr.specialty.name for gr in groups)
     return tuple(specialty_names)
 
 
-def read_students_information():
+def read_students_information() -> tuple:
     with open("students.pickle", "rb") as f:
         students = pickle.load(f)
     return students
-
+    
