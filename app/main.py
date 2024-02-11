@@ -1,4 +1,4 @@
-dimport dataclasses
+import dataclasses
 from datetime import datetime
 import pickle
 from typing import List
