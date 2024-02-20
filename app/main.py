@@ -2,10 +2,12 @@ from datetime import datetime
 import dataclasses
 import pickle
 
+
 @dataclasses.dataclass
 class Specialty:
     name: str
     number: int
+
 
 @dataclasses.dataclass
 class Student:
@@ -17,11 +19,13 @@ class Student:
     phone_number: str
     address: str
 
+
 @dataclasses.dataclass
 class Group:
     specialty: Specialty
     course: int
     students: list
+
 
 def write_groups_information(groups: list) -> int:
     with open("groups.pickle", "wb") as file:
@@ -31,11 +35,13 @@ def write_groups_information(groups: list) -> int:
             max_students = max(max_students, len(group.students))
     return max_students
 
+
 def write_students_information(students: list) -> int:
     with open("students.pickle", "wb") as file:
         for student in students:
             pickle.dump(student, file)
     return len(students)
+
 
 def read_groups_information() -> list:
     specialties = set()
@@ -47,6 +53,7 @@ def read_groups_information() -> list:
         except EOFError:
             pass
     return list(specialties)
+
 
 def read_students_information() -> list:
     students = []
