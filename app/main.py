@@ -1,4 +1,5 @@
 import dataclasses
+import pickle
 
 
 @dataclasses.dataclass
@@ -23,3 +24,9 @@ class Group:
     specialty: Specialty
     course: int
     students: list[Student]
+
+
+def write_groups_information(groups: list[Group]) -> int:
+    with open("groups.pickle", "wb") as file:
+        pickle.dump(groups, file)
+    return max(len(group.students) for group in groups) if groups else 0
