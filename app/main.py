@@ -42,3 +42,8 @@ def read_groups_information() -> list[str]:
     with open("groups.pickle", "rb") as file:
         groups = pickle.load(file)
         return list(set(group.specialty.name for group in groups))
+
+
+def read_students_information() -> list[Student]:
+    with open("students.pickle", "rb") as file:
+        return pickle.load(file)
