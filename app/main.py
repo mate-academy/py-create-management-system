@@ -40,7 +40,6 @@ def write_groups_information(groups: [Group]) -> int:
         ],
         default=0
     )
-    # print(len([group.students for group in groups]))
 
 
 def write_students_information(students: [Student]) -> int:
