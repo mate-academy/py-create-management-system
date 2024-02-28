@@ -51,7 +51,7 @@ def read_groups_information() -> list:
             except EOFError:
                 break
         unique_specialties = list({group.specialty.name for group in groups})
-        return unique_specialties[0]
+        return unique_specialties
 
 
 def read_students_information() -> list:
@@ -63,4 +63,4 @@ def read_students_information() -> list:
                 students.append(student)
             except EOFError:
                 break
-        return students[0]
+        return students
