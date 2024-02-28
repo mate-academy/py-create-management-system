@@ -1,26 +1,25 @@
-from dataclasses import dataclass
-from datetime import datetime
+import dataclasses
 import pickle
 
 
-@dataclass
+@dataclasses.dataclass
 class Specialty:
     name: str
     number: int
 
 
-@dataclass
+@dataclasses.dataclass
 class Student:
     first_name: str
     last_name: str
-    birth_date: datetime
+    birth_date: str
     average_mark: float
     has_scholarship: bool
     phone_number: str
     address: str
 
 
-@dataclass
+@dataclasses.dataclass
 class Group:
     specialty: Specialty
     course: int
@@ -30,37 +29,21 @@ class Group:
 def write_groups_information(groups: list[Group]) -> int:
     with open("groups.pickle", "wb") as file:
         pickle.dump(groups, file)
-
-    return max(len(group.students) for group in groups)
+    return max(len(group.students) for group in groups) if groups else 0
 
 
 def write_students_information(students: list[Student]) -> int:
     with open("students.pickle", "wb") as file:
         pickle.dump(students, file)
-
     return len(students)
 
 
-def read_groups_information() -> list:
+def read_groups_information() -> list[str]:
     with open("groups.pickle", "rb") as file:
-        groups = []
-        while True:
-            try:
-                group = pickle.load(file)
-                groups.append(group)
-            except EOFError:
-                break
-        unique_specialties = list({group.specialty.name for group in groups})
-        return unique_specialties
+        groups = pickle.load(file)
+        return list(set(group.specialty.name for group in groups))
 
 
-def read_students_information() -> list:
+def read_students_information() -> list[Student]:
     with open("students.pickle", "rb") as file:
-        students = []
-        while True:
-            try:
-                student = pickle.load(file)
-                students.append(student)
-            except EOFError:
-                break
-        return students
+        return pickle.load(file)
