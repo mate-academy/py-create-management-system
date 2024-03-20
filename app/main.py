@@ -1,15 +1,15 @@
-import dataclasses
+from dataclasses import dataclass
 from datetime import datetime
 import pickle
 
 
-@dataclasses
+@dataclass
 class Specialty:
     name: str
     number: int
 
 
-@dataclasses
+@dataclass
 class Student:
     first_name: str
     last_name: str
@@ -20,38 +20,40 @@ class Student:
     address: str
 
 
-@dataclasses
+@dataclass
 class Group:
     specialty: Specialty
     course: int
     students: list[Student]
 
 
-def write_group_information(groups: list[Group]) -> int:
-    max_students = 0
-    with open("groups.pickle", "wb") as file:
-        pickle.dump(groups, file)
+def write_groups_information(groups: list[Group]) -> int:
+    max_number_of_students = 0
+    with open("groups.pickle", "wb") as pickle_file:
+        pickle.dump(groups, pickle_file)
         for group in groups:
-            max_students = max(max_students, len(group.students))
-    return max_students
+            if len(group.students) > max_number_of_students:
+                max_number_of_students = len(group.students)
+    return max_number_of_students
 
 
 def write_students_information(students: list[Student]) -> int:
-    with open("students.pickle", "wb") as file:
-        pickle.dump(students, file)
+    with open("students.pickle", "wb") as pickle_file:
+        pickle.dump(students, pickle_file)
     return len(students)
 
 
-def read_groups_information() -> set:
-    groups_specialties = set()
-    with open("groups.pickle", "rb") as file:
-        groups = pickle.load(file)
-        for group in groups:
-            groups_specialties.add(group.specialty.name)
-    return groups_specialties
+def read_groups_information() -> list[Specialty]:
+    specialties = []
+    with open("groups.pickle", "rb") as pickle_file:
+        groups = pickle.load(pickle_file)
+    for group in groups:
+        specialties.append(group.specialty.name)
+    specialties = list(set(specialties))
+    return specialties
 
 
 def read_students_information() -> list[Student]:
-    with open("students.pickle", "rb") as file:
-        students = pickle.load(file)
+    with open("students.pickle", "rb") as pickle_file:
+        students = pickle.load(pickle_file)
     return students
