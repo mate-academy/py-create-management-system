@@ -36,14 +36,14 @@ def write_groups_information(groups: list[Group]) -> int | None:
     return None
 
 
-def write_students_information(students: list[Student]):
+def write_students_information(students: list[Student]) -> int:
     with open("students.pickle", "wb") as file:
         for student in students:
             pickle.dump(student, file)
     return len(students)
 
 
-def read_groups_information():
+def read_groups_information() -> list:
     with open("groups.pickle", "rb") as file:
         groups = []
         while 1:
@@ -53,7 +53,7 @@ def read_groups_information():
                 return list(set([group.specialty.name for group in groups]))
 
 
-def read_students_information():
+def read_students_information() -> list:
     with open("students.pickle", "rb") as file:
         students = []
         while 1:
@@ -61,4 +61,3 @@ def read_students_information():
                 students.append(pickle.load(file))
             except EOFError:
                 return students
-
