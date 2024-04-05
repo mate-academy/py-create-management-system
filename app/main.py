@@ -1,6 +1,6 @@
 import dataclasses
-from datetime import datetime
 import pickle
+from datetime import datetime
 
 
 @dataclasses.dataclass
