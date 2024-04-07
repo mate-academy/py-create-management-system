@@ -71,4 +71,3 @@ def read_students_information() -> List[Student]:
     except FileNotFoundError:
         print("File 'students.pickle' not found.")
     return students
-
