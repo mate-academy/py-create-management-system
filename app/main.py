@@ -38,7 +38,7 @@ def write_groups_information(group: list[Group]) -> int or []:
 def write_students_information(student: list[Student]) -> int:
     with open("students.pickle", "wb") as f:
         pickle.dump(student, f)
-    return len(student)
+        return len(student)
 
 
 def read_groups_information() -> list:
@@ -48,7 +48,7 @@ def read_groups_information() -> list:
         for i in fl:
             if i.specialty.name not in res:
                 res.append(i.specialty.name)
-    return res
+        return res
 
 
 def read_students_information() -> list:
