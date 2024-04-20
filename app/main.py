@@ -28,13 +28,13 @@ class Group:
 
 
 def write_groups_information(groups: list[Group]) -> int:
+    with open("groups.pickle", "wb") as group_file:
+        pickle.dump(groups, group_file)
+
     if not groups:
         return 0
 
     total_students = max(len(group.students) for group in groups)
-
-    with open("groups.pickle", "wb") as group_file:
-        pickle.dump(groups, group_file)
 
     return total_students
 
