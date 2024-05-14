@@ -26,28 +26,32 @@ class Group:
     students: list[Student]
 
 
-
-
-def write_groups_information(groups: list[Group]) -> int:
-    with open("groups.pickle", "wb") as file:
-        pickle.dump(groups, file)
-
-    return 0 if not groups else (
-        len(max(groups, key=lambda group: len(group.students)).students))
+def write_groups_information(groups: list) -> int:
+    max_stud = 0
+    with open("groups.pickle", "wb") as f:
+        for group in groups:
+            pickle.dump(group, f)
+            if len(group.students) > max_stud:
+                max_stud = len(group.students)
+    return max_stud
 
 
 def write_students_information(students: list[Student]) -> int:
-    with open("students.pickle", "wb") as file:
-        pickle.dump(students, file)
-
+    with open("students.pickle", "wb") as f:
+        pickle.dump(students, f)
     return len(students)
 
 
 def read_groups_information() -> set:
-    with open("groups.pickle", "rb") as file:
-        groups = pickle.load(file)
-
-    return {group.specialty.name for group in groups}
+    specialties = set()
+    with open("groups.pickle", "rb") as f:
+        try:
+            while True:
+                group = pickle.load(f)
+                specialties.add(group.specialty.name)
+        except EOFError:
+            pass
+    return specialties
 
 
 def read_students_information() -> list:
