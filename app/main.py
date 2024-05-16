@@ -49,4 +49,3 @@ def read_students_information(file_name: str) -> list:
     with open(file_name, "rb") as file:
         students = pickle.load(file)
     return students
-
