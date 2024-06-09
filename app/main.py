@@ -1,7 +1,6 @@
 import dataclasses
 from datetime import datetime
 import pickle
-from typing import List, Set
 
 
 @dataclasses.dataclass
@@ -17,36 +16,39 @@ class Student:
     birth_date: datetime
     average_mark: float
     has_scholarship: bool
-    phone_number: str
+    phone_number: int
     address: str
 
 
 @dataclasses.dataclass
 class Group:
     specialty: Specialty
-    course: int
-    students: List[Student]
+    course: str
+    students: list[Student]
 
 
-def write_groups_information(groups: List[Group]) -> int:
-    with open("groups.pickle", "wb") as file:
-        pickle.dump(groups, file)
-    return max(len(group.students) for group in groups)
+def write_groups_information(groups: list[Group]) -> int:
+    with open("groups.pickle", "wb") as p_groups:
+        pickle.dump(groups, p_groups)
+    return max(len(group.students) for group in groups) if groups else None
 
 
-def write_students_information(students: List[Student]) -> int:
-    with open("students.pickle", "wb") as file:
-        pickle.dump(students, file)
+def write_students_information(students: list[Student]) -> int:
+    with open("students.pickle", "wb") as p_students:
+        pickle.dump(students, p_students)
     return len(students)
 
 
-def read_groups_information() -> Set[str]:
+def read_groups_information() -> list[str]:
     with open("groups.pickle", "rb") as file:
-        groups = pickle.load(file)
-    return {group.specialty.name for group in groups}
+        groups_list = pickle.load(file)
+        result = []
+        for group in groups_list:
+            if group.specialty.name not in result:
+                result.append(group.specialty.name)
+        return result
 
 
-def read_students_information() -> List[Student]:
+def read_students_information() -> list[Student]:
     with open("students.pickle", "rb") as file:
-        students = pickle.load(file)
-    return students
+        return pickle.load(file)
