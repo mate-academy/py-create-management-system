@@ -40,7 +40,7 @@ def write_students_information(list_of_student: list[Student]) -> int:
 
 
 def read_groups_information() -> set:
-    retur_set = ()
+    retur_set = set()
     with open("groups.pickle", "rb") as file:
         group_information = pickle.load(file)
     for group in group_information:
