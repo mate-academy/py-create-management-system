@@ -31,7 +31,7 @@ def write_groups_information(groups: list) -> int:
     with open("groups.pickle", "wb") as f:
         pickle.dump(groups, f)
 
-    return max(len(groups.students) for group in groups)
+    return max(len(group.students) for group in groups)
 
 
 def write_students_information(students: list) -> int:
