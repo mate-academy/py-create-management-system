@@ -4,7 +4,7 @@ import pickle
 
 
 @dataclass
-class Speciality:
+class Specialty:
     name: str
     number: int
 
