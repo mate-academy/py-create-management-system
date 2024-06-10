@@ -49,7 +49,7 @@ def read_groups_information() -> list:
     return list(specs)
 
 
-def read_students_ingormation() -> list:
+def read_students_information() -> list:
     with open("students_pickle", "rb") as f:
         students = pickle.load(f)
 
