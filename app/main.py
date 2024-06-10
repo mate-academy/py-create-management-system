@@ -45,7 +45,7 @@ def read_groups_information() -> list:
     with open("groups.pickle", "rb") as f:
         groups = pickle.load(f)
 
-    specs = {group.speciality.name for group in groups}
+    specs = {group.specialty.name for group in groups}
     return list(specs)
 
 
