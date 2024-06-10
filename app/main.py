@@ -23,7 +23,7 @@ class Student:
 @dataclass
 class Group:
     speciality: Specialty
-    course: int
+    course: intd
     students: list[Student]
 
 
