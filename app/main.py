@@ -64,5 +64,5 @@ def read_students_information() -> list[Student]:
         return students_list
     except FileNotFoundError:
         return []
-    except Exception as e:
+    except Exception:
         return []
