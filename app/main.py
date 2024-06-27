@@ -31,7 +31,8 @@ def write_groups_information(groups: list[Group]) -> int:
     with open("groups.pickle", "wb") as file:
         pickle.dump(groups, file)
 
-    max_students = max(len(group.students) for group in groups) if groups else 0
+    max_students = max(len(group.students) for
+                       group in groups) if groups else 0
     return max_students
 
 
