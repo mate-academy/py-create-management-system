@@ -27,7 +27,7 @@ class Group:
     students: list
 
 
-def write_groups_information(groups):
+def write_groups_information(groups: list) -> int:
     if not groups:
         with open("groups.pickle", "wb") as file:
             pickle.dump(groups, file)
@@ -40,14 +40,14 @@ def write_groups_information(groups):
     return max_students
 
 
-def write_students_information(students):
+def write_students_information(students: str) -> int:
     with open("students.pickle", "wb") as file:
         pickle.dump(students, file)
 
     return len(students)
 
 
-def read_groups_information():
+def read_groups_information() -> list:
     try:
         with open("groups.pickle", "rb") as file:
             groups = pickle.load(file)
@@ -57,7 +57,7 @@ def read_groups_information():
         return []
 
 
-def read_students_information():
+def read_students_information() -> list:
     try:
         with open("students.pickle", "rb") as file:
             students = pickle.load(file)
