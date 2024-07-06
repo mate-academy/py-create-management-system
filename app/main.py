@@ -32,8 +32,9 @@ def write_groups_information(groups: list) -> int:
     max_students = max(len(group.students) for group in groups)
     return max_students
 
+
 def write_students_information(students: list) -> int:
-    with open("students.pickle", 'wb') as f:
+    with open("students.pickle", "wb") as f:
         pickle.dump(students, f)
     return len(students)
 
@@ -44,7 +45,7 @@ def read_groups_information(groups: list) -> int:
     new_group = {group.specialty for group in groups}
     return list(new_group)
 
-    
+
 def read_students_information(students: list) -> list:
     with open("students.pickle", "wb") as f:
         students = pickle.load(f)
