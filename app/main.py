@@ -29,6 +29,8 @@ class Group:
 def write_groups_information(groups: list) -> int:
     with open("groups.pickle", "wb") as f:
         pickle.dump(groups, f)
+    if not groups:
+        return 0
     max_students = max(len(group.students) for group in groups)
     return max_students
 
