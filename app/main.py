@@ -31,9 +31,12 @@ def write_groups_information(groups: list[Group]) -> int:
     with open("groups.pickle", "wb") as pickle_file:
         pickle.dump(groups, pickle_file)
     student_lists = []
-    for group in groups:
-        student_lists.append(len(group.students))
-    max_students = max(student_lists)
+    if groups:
+        for group in groups:
+            student_lists.append(len(group.students))
+        max_students = max(student_lists)
+    else:
+        max_students = 0
     return max_students
 
 
@@ -43,16 +46,16 @@ def write_students_information(students: list[Student]) -> int:
     return len(students)
 
 
-def read_groups_information(groups_pickle: str) -> set:
+def read_groups_information() -> set:
     specialty_set = []
-    with open(groups_pickle, "rb") as pickle_file:
+    with open("groups.pickle", "rb") as pickle_file:
         groups = pickle.load(pickle_file)
     for group in groups:
         specialty_set.append(group.specialty.name)
     return set(specialty_set)
 
 
-def read_students_information(students_pickle: str) -> list[Student]:
-    with open(students_pickle, "rb") as pickle_file:
+def read_students_information() -> list[Student]:
+    with open("students.pickle", "rb") as pickle_file:
         students = pickle.load(pickle_file)
     return students
