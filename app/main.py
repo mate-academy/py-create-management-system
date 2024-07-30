@@ -1,5 +1,7 @@
 import dataclasses
+import pickle
 from datetime import datetime
+
 
 
 @dataclasses.dataclass
@@ -24,6 +26,14 @@ class Croup:
     specialty: Specialty
     course: int
     students: list[Student]
+
+
+def write_groups_information(input: list) -> int:
+    with open("group.pickle", "wb") as file:
+        pickle.dump(input, file)
+    return max([len(input[n].students) for n in input])
+
+
 
 
 
