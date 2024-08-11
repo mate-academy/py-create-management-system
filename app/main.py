@@ -54,4 +54,4 @@ def read_groups_information() -> set:
 def read_students_information() -> list:
     with open("students.pickle", "rb") as file:
         data_student = pickle.load(file)
-    return [student for student in data_student if isinstance(student, Student)]
+    return [student for student in data_student]
