@@ -6,7 +6,7 @@ import pickle
 
 
 @dataclasses.dataclass
-class Speciality:
+class Specialty:
     name: str
     number: int
 
@@ -24,7 +24,7 @@ class Student:
 
 @dataclasses.dataclass
 class Group:
-    speciality: Speciality
+    speciality: Specialty
     course: int
     students: list[Student]
 
