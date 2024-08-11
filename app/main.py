@@ -1,8 +1,9 @@
 # write your code here
-import os
 import dataclasses
-from datetime import datetime
+import os
 import pickle
+from datetime import datetime
+from typing import List
 
 
 @dataclasses.dataclass
@@ -18,31 +19,28 @@ class Student:
     birth_date: datetime
     average_mark: float
     has_scholarship: bool
-    phone_number: int
+    phone_number: str
     address: str
 
 
 @dataclasses.dataclass
 class Group:
-    speciality: Specialty
+    specialty: Specialty
     course: int
-    students: list[Student]
+    students: List[Student]
 
 
-def write_groups_information(groups: list[Group]) -> int:
+def write_groups_information(groups: list) -> int:
     if not groups:
         return 0
-
-    with open("groups.pickle", "wb") as handle:
-        pickle.dump(groups, handle)
-
-    max_student = max(len(group.students) for group in groups)
-    return max_student
+    with open("groups.pickle", "wb") as file:
+        pickle.dump(groups, file)
+    return max(len(group.students) for group in groups)
 
 
-def write_students_information(students: list[Student]) -> int:
-    with open("students.pickle", "wb") as handle:
-        pickle.dump(students, handle)
+def write_students_information(students: list) -> int:
+    with open("students.pickle", "wb") as file:
+        pickle.dump(students, file)
     return len(students)
 
 
@@ -54,7 +52,7 @@ def read_groups_information() -> set:
     return {group.specialty.name for group in groups}
 
 
-def read_students_information() -> list[Student]:
-    with open("students.pickle", "rb") as handle:
-        students = pickle.load(handle)
+def read_students_information() -> list:
+    with open("students.pickle", "rb") as file:
+        students = pickle.load(file)
     return students
