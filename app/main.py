@@ -1,4 +1,5 @@
 # write your code here
+import os
 import dataclasses
 from datetime import datetime
 import pickle
@@ -28,28 +29,29 @@ class Group:
     students: list[Student]
 
 
-def write_groups_information(groups: list[Group]) -> None:
-    with open("groups.pickle", "wb") as handle:
-        pickle.dump(groups, handle)
-
+def write_groups_information(groups: list[Group]) -> int:
     if not groups:
         return 0
+
+    with open("groups.pickle", "wb") as handle:
+        pickle.dump(groups, handle)
 
     max_student = max(len(group.students) for group in groups)
     return max_student
 
 
-def write_students_information(students: list[Student]) -> None:
+def write_students_information(students: list[Student]) -> int:
     with open("students.pickle", "wb") as handle:
         pickle.dump(students, handle)
     return len(students)
 
 
-def read_groups_information() -> list[Group]:
-    with open("groups.pickle", "rb") as handle:
-        groups = pickle.load(handle)
-    specialities = {group.speciality.name for group in groups}
-    return list(specialities)
+def read_groups_information() -> set:
+    if not os.path.exists("groups.pickle"):
+        return set()
+    with open("groups.pickle", "rb") as file:
+        groups = pickle.load(file)
+    return {group.specialty.name for group in groups}
 
 
 def read_students_information() -> list[Student]:
