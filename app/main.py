@@ -52,6 +52,7 @@ def read_groups_information() -> list[str]:
     # Extract unique specialty names
     specialty_names = {group.specialty.name for group in groups}
     return list(specialty_names)
+    # 2
 
 
 def read_students_information() -> list[Student]:
