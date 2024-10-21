@@ -26,8 +26,8 @@ class Group:
     course: int
     students: list[Student]
 
-# done
-def write_groups_information(groups: list[Group]):
+
+def write_groups_information(groups: list[Group]) -> int:
     groups_count = []
     with open("groups.pickle", "wb") as f:
         for group in groups:
@@ -39,8 +39,8 @@ def write_groups_information(groups: list[Group]):
 
     return max(groups_count)
 
-# done
-def write_students_information(students: list[Student]):
+
+def write_students_information(students: list[Student]) -> int:
     students_count = 0
     with open("students.pickle", "wb") as f:
         for student in students:
@@ -49,8 +49,8 @@ def write_students_information(students: list[Student]):
 
     return students_count
 
-# done
-def read_groups_information():
+
+def read_groups_information() -> list:
     groups_list = []
     with open("groups.pickle", "rb") as f:
         # groups_list.append(pickle.load(f))
@@ -66,8 +66,8 @@ def read_groups_information():
 
     return list(set(lst))
 
-# done
-def read_students_information():
+
+def read_students_information() -> list:
     students_list = []
     with open("students.pickle", "rb") as f:
         # students_list.append(pickle.load(f))
