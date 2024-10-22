@@ -1,14 +1,12 @@
 from dataclasses import dataclass
-from datetime import datetime
-import pickle
 
+import pickle
 
 
 @dataclass
 class Specialty:
     name: str
     number: int
-
 
 
 @dataclass
@@ -20,7 +18,6 @@ class Student:
     has_scholarship: bool
     phone_number: int
     address: str
-
 
 
 @dataclass
