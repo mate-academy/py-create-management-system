@@ -22,17 +22,15 @@ class Student:
 
 @dataclass
 class Group:
-    speciality: Specialty
+    specialty: Specialty
     course: int
     students: list[Student]
 
 
 def write_groups_information(groups: list[Group]) -> int:
-    with open("students.pickle", "wb") as file:
+    with open("groups.pickle", "wb") as file:
         pickle.dump(groups, file)
-    if not groups:
-        return 0
-    return max(len(group.students)for group in groups)
+    return max((len(group.students) for group in groups), default=0)
 
 
 def write_students_information(students: list[Student]) -> int:
