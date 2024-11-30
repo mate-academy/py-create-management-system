@@ -28,36 +28,32 @@ class Group:
 
 
 def write_groups_information(list_of_groups: list[Group]) -> int:
-    count_of_students_in_group: list[int] = []
-
     with open("groups.pickle", "wb") as pickle_file:
-        for group in list_of_groups:
-            pickle.dump(group, pickle_file)
-            count_of_students_in_group.append(len(group.students))
+        pickle.dump(list_of_groups, pickle_file)
 
-    return max(count_of_students_in_group)
+    if not list_of_groups:
+        return 0
+
+    return max([len(group.students) for group in list_of_groups])
 
 
 def write_students_information(list_of_students: list[Student]) -> int:
-    count_of_students: int = 0
-
     with open("students.pickle", "wb") as pickle_file:
-        for student in list_of_students:
-            pickle.dump(student, pickle_file)
-            count_of_students += 1
+        pickle.dump(list_of_students, pickle_file)
 
-    return count_of_students
+    return len(list_of_students)
 
 
 def read_groups_information(groups_file: str = "groups.pickle") -> list:
     with open(groups_file, "rb") as pickle_file:
         groups: list[Group] = pickle.load(pickle_file)
 
-    return list({group.specialty.name for group in groups})
+    specialties = {group.specialty.name for group in groups}
+    return list(specialties)
 
 
-def read_students_information(students_file: str) -> list:
+def read_students_information(students_file: str = "students.pickle") -> list:
     with open(students_file, "rb") as pickle_file:
         students: list[Student] = pickle.load(pickle_file)
 
-    return [student for student in students]
+    return students
