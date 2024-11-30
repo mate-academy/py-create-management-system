@@ -35,7 +35,7 @@ def write_groups_information(list_of_groups: list[Group]) -> int:
         return 0
 
     return max(len(group.students) for group in list_of_groups)
-
+assert
 
 def write_students_information(list_of_students: list[Student]) -> int:
     with open("students.pickle", "wb") as pickle_file:
