@@ -3,10 +3,10 @@ import os
 import unittest.mock
 
 from datetime import date
+from app.Specialty import Specialty
 
 import app.main
 from app.main import (
-    Specialty,
     Student,
     Group,
     write_groups_information,
