@@ -1,13 +1,15 @@
-from dataclasses import dataclass
+import dataclasses
 from datetime import datetime
 import pickle
 
-@dataclass
+
+@dataclasses.dataclass
 class Specialty:
     name: str
     number: int
 
-@dataclass
+
+@dataclasses.dataclass
 class Student:
     first_name: str
     last_name: str
@@ -17,30 +19,51 @@ class Student:
     phone_number: str
     address: str
 
-@dataclass
+
+@dataclasses.dataclass
 class Group:
     specialty: Specialty
     course: int
-    students: list[Student]
+    students: list
 
-def write_groups_information(groups):
-    with open('groups.pickle', 'wb') as file:
+
+def write_groups_information(groups: list) -> int:
+    if not groups:
+        return 0
+
+    with open("groups.pickle", "wb") as file:
         pickle.dump(groups, file)
+
     max_students = max(len(group.students) for group in groups)
     return max_students
 
-def write_students_information(students):
-    with open('students.pickle', 'wb') as file:
+
+def write_students_information(students: list) -> int:
+    with open("students.pickle", "wb") as file:
         pickle.dump(students, file)
+
     return len(students)
 
-def read_groups_information():
-    with open('groups.pickle', 'rb') as file:
-        groups = pickle.load(file)
-    specialties = {group.specialty.name for group in groups}
-    return list(specialties)
 
-def read_students_information():
-    with open('students.pickle', 'rb') as file:
-        students = pickle.load(file)
-    return students
+def read_groups_information() -> list:
+    try:
+        with open("groups.pickle", "rb") as file:
+            groups = pickle.load(file)
+
+        if not groups:
+            return []
+
+        specialty_names = {group.specialty.name for group in groups}
+        return list(specialty_names)
+    except (FileNotFoundError, EOFError):
+        return []
+
+
+def read_students_information() -> list:
+    try:
+        with open("students.pickle", "rb") as file:
+            students = pickle.load(file)
+
+        return students
+    except (FileNotFoundError, EOFError):
+        return []
