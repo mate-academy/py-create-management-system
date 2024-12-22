@@ -46,7 +46,6 @@ def read_groups_information() -> Set[str]:
     try:
         with open("groups.pickle", "rb") as file:
             groups = pickle.load(file)
-        # Extract unique specialty names
         return {group.specialty.name for group in groups}
     except (FileNotFoundError, EOFError):
         return set()
