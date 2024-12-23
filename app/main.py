@@ -13,11 +13,11 @@ class Specialty:
 class Student:
     first_name: str
     last_name: str
-    birth_date: int
-    average_mark : float
-    has_specialty: bool
+    birth_date: datetime
+    average_mark: float
+    has_scholarship: bool
     phone_number: int
-    adress: str | int | float
+    address: str
 
 
 @dataclass
