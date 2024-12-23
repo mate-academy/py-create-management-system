@@ -34,7 +34,6 @@ def write_groups_information(
 ) -> int:
     with open(file_name, "wb") as group_file:
         pickle.dump(groups, group_file)
-    # Если список групп пуст, возвращаем 0
     return max((len(group.students) for group in groups), default=0)
 
 
