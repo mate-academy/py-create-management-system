@@ -60,6 +60,7 @@ class Group:
 #         data_students = pickle.load(file)
 #     return data_students
 
+
 def write_groups_information(list_groups: list[Group]) -> int:
     with open("groups.pickle", "wb") as file:
         pickle.dump(list_groups, file)
