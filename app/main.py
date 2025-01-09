@@ -28,11 +28,10 @@ class Group:
 
 
 def write_groups_information(groups: list[Group]) -> int:
-    result = []
     with open("groups.pickle", "wb") as file:
-        for group in groups:
-            pickle.dump(group, file)
-            result.append(len(group.students))
+        pickle.dump(groups, file)
+
+    result = [len(group.students) for group in groups]
     if result:
         return max(result)
     else:
