@@ -43,6 +43,7 @@ def write_students_information(students: list[Student]) -> int:
         pickle.dump(students, file)
     return len(students)
 
+
 def read_groups_information() -> list:
     result = []
     with open("groups.pickle", "rb") as file:
