@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from datetime import datetime
 import pickle
 
 
@@ -12,10 +13,10 @@ class Specialty:
 class Student:
     first_name: str
     last_name: str
-    birth_date: int
+    birth_date: datetime
     average_mark: float
     has_scholarship: bool
-    phone_number: str
+    phone_number: int
     address: str
 
 
@@ -27,13 +28,13 @@ class Group:
 
 
 def write_groups_information(groups: list[Group]) -> int:
-    if not groups:
-        return 0
-    max_students = max(len(group.students) for group in groups)
+    max_students = [len(group.students) for group in groups]
     with open("groups.pickle", "wb") as pickle_file:
         pickle.dump(groups, pickle_file)
-
-    return max_students
+    if max_students:
+        return max(max_students)
+    else:
+        return 0
 
 
 def write_students_information(students: list[Student]) -> int:
