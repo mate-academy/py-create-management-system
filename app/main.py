@@ -1,38 +1,37 @@
-from dataclasses import dataclass
-from typing import List
-from datetime import datetime
+import dataclasses
 import pickle
+from typing import List
+from datetime import date
 
 
-@dataclass
-class Speciality:
+@dataclasses.dataclass
+class Specialty:
     name: str
     number: int
 
 
-@dataclass
+@dataclasses.dataclass
 class Student:
     first_name: str
     last_name: str
-    birth_date: datetime
+    birth_date: date
     average_mark: float
     has_scholarship: bool
     phone_number: str
     address: str
 
 
-@dataclass
+@dataclasses.dataclass
 class Group:
-    speciality: Speciality
-    course: dict
+    specialty: Specialty
+    course: int
     students: List[Student]
 
 
 def write_groups_information(groups: List[Group]) -> int:
-    with open("groups.pickle", "wb") as f:
-        pickle.dump(groups, f)
-    max_students = max(len(group.students) for group in groups)
-    return max_students
+    with open("groups.pickle", "wb") as file:
+        pickle.dump(groups, file)
+    return max((len(group.students) for group in groups), default=0)
 
 
 def write_students_information(students: List[Student]) -> int:
