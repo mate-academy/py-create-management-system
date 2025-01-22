@@ -26,7 +26,7 @@ class Group:
     students: list[Student]
 
 
-def write_groups_information(groups: list[Group]):
+def write_groups_information(groups: list[Group]) -> int:
     with open("groups.pickle", "wb") as pickle_file:
         pickle.dump(groups, pickle_file)
 
