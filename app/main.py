@@ -2,6 +2,7 @@ import pickle
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import List
+import os
 
 
 @dataclass
@@ -43,6 +44,8 @@ def write_students_information(students: List[Student]) -> int:
 
 
 def read_groups_information() -> set:
+    if not os.path.exists("groups.pickle"):
+        return set()
     with open("groups.pickle", "rb") as file:
         groups = pickle.load(file)
     return {group.specialty.name for group in groups}
