@@ -29,9 +29,12 @@ class Group:
 
 
 def write_groups_information(groups: List[Group]) -> int:
-    with open("groups.pickle", "wb") as file:
-        pickle.dump(groups, file)
-    return max(len(group.students) for group in groups)
+    groups = []
+    try:
+        max_students = write_groups_information(groups)
+        print(f"Maximum number of students in any group: {max_students}")
+    except ValueError as e:
+        print(e)
 
 
 def write_students_information(students: List[Student]) -> int:
