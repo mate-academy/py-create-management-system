@@ -29,12 +29,17 @@ class Group:
 
 
 def write_groups_information(groups: List[Group]) -> int:
-    groups = []
+    # Передати список груп
+    groups = []  # Порожній список для тестування
     try:
         max_students = write_groups_information(groups)
         print(f"Maximum number of students in any group: {max_students}")
     except ValueError as e:
-        print(e)
+        print(e)  # Вивести повідомлення про помилку
+
+    with open("groups.pickle", "wb") as file:
+        pickle.dump(groups, file)
+    return max(len(group.students) for group in groups)
 
 
 def write_students_information(students: List[Student]) -> int:
