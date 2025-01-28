@@ -40,13 +40,13 @@ def write_students_information(students: list[Student]) -> int:
     return len(students)
 
 
-def read_groups_information() -> list:
+def read_groups_information() -> list[str]:
     with open("groups.pickle", "rb") as pickle_file:
         groups_files = pickle.load(pickle_file)
     return list(set(sp.specialty.name for sp in groups_files))
 
 
-def read_students_information() -> list:
+def read_students_information() -> list[Student]:
     with open("students.pickle", "rb") as pickle_file:
         students_files = pickle.load(pickle_file)
     return students_files
