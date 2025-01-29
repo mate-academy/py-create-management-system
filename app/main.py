@@ -3,6 +3,7 @@ import pickle
 
 from datetime import datetime
 
+
 @dataclasses.dataclass()
 class Specialty:
     name: str
@@ -54,7 +55,7 @@ def read_groups_information() -> set:
 
 
 def read_students_information() -> list[Student]:
-    students =[]
+    students = []
     with open("students.pickle", "rb") as f:
         while True:
             try:
