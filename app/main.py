@@ -48,7 +48,7 @@ def read_groups_information() -> list:
         if isinstance(groups, list):
             return list(set(group.specialty.name
                             for group in groups if isinstance(group, Group)))
-        
+
         return []
 
 
