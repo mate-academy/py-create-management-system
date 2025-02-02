@@ -4,7 +4,7 @@ import pickle
 
 
 @dataclass
-class Specialty :
+class Specialty:
     name: str
     number: int
 
@@ -22,7 +22,7 @@ class Student:
 
 @dataclass
 class Group:
-    Specialty : Specialty 
+    Specialty: Specialty
     course: int
     students: list[Student]
 
@@ -50,7 +50,7 @@ def read_groups_information() -> set[str]:
             while True:
                 try:
                     group = pickle.load(pickle_file)
-                    specialties.add(group.Specialty .name)
+                    specialties.add(group. Specialty .name)
                 except EOFError:
                     break
     except FileNotFoundError:
