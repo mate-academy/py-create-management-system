@@ -1,73 +1,57 @@
-from dataclasses import dataclass
-from datetime import datetime
+import dataclasses
 import pickle
+from datetime import datetime
+from typing import List
 
 
-@dataclass
+@dataclasses.dataclass
 class Specialty:
     name: str
     number: int
 
 
-@dataclass
+@dataclasses.dataclass
 class Student:
     first_name: str
     last_name: str
     birth_date: datetime
     average_mark: float
     has_scholarship: bool
-    phone_number: int
+    phone_number: str
     address: str
 
 
-@dataclass
+@dataclasses.dataclass
 class Group:
     specialty: Specialty
     course: int
-    students: list[Student]
+    students: List[Student]
 
 
-def write_groups_information(groups: list[Group]) -> int:
-    max_students = 0
-    with open("groups.pickle", "wb") as pickle_file:
-        for group in groups:
-            pickle.dump(group, pickle_file)
-            max_students = max(max_students, len(group.students))
-    return max_students
+def write_groups_information(groups: List[Group]) -> int:
+    with open("groups.pickle", "wb") as file:
+        pickle.dump(groups, file)
+    return max(len(group.students) for group in groups) if groups else 0
 
 
-def write_students_information(students: list[Student]) -> int:
-    with open("students.pickle", "wb") as pickle_file:
-        for student in students:
-            pickle.dump(student, pickle_file)
+def write_students_information(students: List[Student]) -> int:
+    with open("students.pickle", "wb") as file:
+        pickle.dump(students, file)
     return len(students)
 
 
-def read_groups_information() -> set[str]:
-    specialties = set()
+def read_groups_information() -> set:
     try:
-        with open("groups.pickle", "rb") as pickle_file:
-            while True:
-                try:
-                    group = pickle.load(pickle_file)
-                    specialties.add(group.specialty.name)
-                except EOFError:
-                    break
+        with open("groups.pickle", "rb") as file:
+            groups = pickle.load(file)
+        return {group.specialty.name for group in groups}
     except FileNotFoundError:
         return set()
-    return specialties
 
 
-def read_students_information() -> list[Student]:
-    students = []
+def read_students_information() -> List[Student]:
     try:
-        with open("students.pickle", "rb") as pickle_file:
-            while True:
-                try:
-                    student = pickle.load(pickle_file)
-                    students.append(student)
-                except EOFError:
-                    break
+        with open("students.pickle", "rb") as file:
+            return pickle.load(file)
     except FileNotFoundError:
         return []
-    return students
