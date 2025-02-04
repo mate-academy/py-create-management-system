@@ -49,6 +49,7 @@ def read_groups_information() -> set:
         return set()
 
 
+# COMMENT
 def read_students_information() -> List[Student]:
     try:
         with open("students.pickle", "rb") as file:
