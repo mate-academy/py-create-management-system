@@ -1,4 +1,4 @@
-import  pickle
+import pickle
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -13,7 +13,7 @@ class Specialty:
 class Student:
     first_name: str
     last_name: str
-    birth_date: int
+    birth_date: datetime
     average_mark: float
     has_scholarship: bool
     phone_number: int
