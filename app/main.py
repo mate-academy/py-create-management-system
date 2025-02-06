@@ -35,7 +35,9 @@ def write_groups_information(groups: List[Group]) -> int:
     with open("groups.pickle", "wb") as file:
         pickle.dump(groups, file)
 
-    return max(len(group.students) for group in groups) if groups else 0
+    return max(
+        len(group.students) for group in groups
+    ) if groups else 0
 
 
 def write_students_information(students: List[Student]) -> int:
@@ -52,7 +54,9 @@ def read_groups_information() -> List[str]:
     try:
         with open("groups.pickle", "rb") as file:
             groups = pickle.load(file)
-        if not isinstance(groups, list) or not all(isinstance(group, Group) for group in groups):
+        if not isinstance(groups, list) or not all(
+                isinstance(group, Group) for group in groups
+        ):
             raise ValueError("Invalid data format in groups.pickle")
         return list(set(group.specialty.name for group in groups))
     except (FileNotFoundError, EOFError, ValueError):
@@ -63,10 +67,11 @@ def read_students_information() -> List[Student]:
     try:
         with open("students.pickle", "rb") as file:
             students = pickle.load(file)
-        if not isinstance(students, list) or not all(isinstance(student, Student) for student in students):
+        if not isinstance(students, list) or not all(
+                isinstance(student, Student) for student in students
+        ):
             raise ValueError("Invalid data format in students.pickle")
         return students
     except (FileNotFoundError, EOFError, ValueError):
         return []
-
 
