@@ -74,4 +74,3 @@ def read_students_information() -> List[Student]:
         return students
     except (FileNotFoundError, EOFError, ValueError):
         return []
-
