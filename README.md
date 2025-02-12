@@ -1,8 +1,3 @@
-# Management System
-**Please note:** read [the guideline](https://github.com/mate-academy/py-task-guideline/blob/main/README.md)
-before starting.
-
-
 The Technical Lyceum plans to create a system for managing information about groups and students. 
 You have to implement the above system using the `dataclasses` module.
 
