@@ -44,7 +44,7 @@ def write_students_information(students: list[Student]) -> int:
 
 def read_groups_information() -> list:
     try:
-        with open('groups.pickle', 'rb') as file:
+        with open("groups.pickle", "rb") as file:
             groups = pickle.load(file)
         specialties = set(group.specialty.name for group in groups)
         return list(specialties)
@@ -54,7 +54,7 @@ def read_groups_information() -> list:
 
 def read_students_information() -> list:
     try:
-        with open('students.pickle', 'rb') as file:
+        with open("students.pickle", "rb") as file:
             students = pickle.load(file)
         return students
     except FileNotFoundError:
