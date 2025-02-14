@@ -44,7 +44,7 @@ def read_groups_information() -> List[str]:
     try:
         with open("groups.pickle", "rb") as file:
             groups = pickle.load(file)
-        return list(set(group.specialty.name) for group in groups)
+        return set([group.specialty.name for group in groups])
     except FileNotFoundError:
         return []
 
