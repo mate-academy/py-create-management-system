@@ -27,7 +27,7 @@ class Group:
     students: list[Student]
 
 
-def write_groups_information(groups):
+def write_groups_information(groups: list) -> int:
     max_number = max(len(group.students) for group in groups) if groups else []
 
     try:
@@ -38,7 +38,7 @@ def write_groups_information(groups):
     return max_number
 
 
-def write_students_information(students):
+def write_students_information(students: list) -> int:
     try:
         with open("students.pickle", "wb") as file:
             pickle.dump(students, file)
@@ -47,18 +47,20 @@ def write_students_information(students):
     return len(students)
 
 
-def read_groups_information():
+def read_groups_information() -> set:
     try:
         with open("groups.pickle", "rb") as f:
             specialties_groups = pickle.load(f)
-            specialty_name = set(group.specialty.name for group in specialties_groups)
+            specialty_name = set(
+                group.specialty.name for group in specialties_groups
+            )
             return specialty_name
     except Exception as e:
         print("Error occur when read file: ", e)
         return set()
 
 
-def read_students_information():
+def read_students_information() -> list:
     try:
         with open("students.pickle", "rb") as file:
             instances = pickle.load(file)
