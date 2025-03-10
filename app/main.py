@@ -54,7 +54,8 @@ def read_groups_information() -> list:
     except FileNotFoundError:
         return []
 
-def read_students_information() ->list:
+
+def read_students_information() -> list:
     try:
         with open("students.pickle", "rb") as f:
             students = pickle.load(f)
