@@ -1,7 +1,32 @@
 import pickle
 from typing import List
-from app.Group import Group
-from app.Student import Student
+from dataclasses import dataclass
+from datetime import datetime
+
+
+
+@dataclass
+class Student:
+    first_name: str
+    last_name: str
+    birth_date: datetime
+    average_mark: float
+    has_scholarship: bool
+    phone_number: int
+    address: str
+
+
+@dataclass
+class Specialty:
+    name: int
+    number: str
+
+
+@dataclass
+class Group:
+    specialty: Specialty
+    course : float
+    students : List[Student]
 
 
 def write_groups_information(groups : List[Group]) -> int:
