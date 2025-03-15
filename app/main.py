@@ -2,7 +2,6 @@ import pickle
 from typing import List
 from app.Group import Group
 from app.Student import Student
-from app.Specialty import Specialty
 
 
 def write_groups_information(groups : List[Group]) -> int:
