@@ -48,7 +48,7 @@ def read_groups_information() -> set:
 
         specialties = set()
         for group in groups:
-            specialties.add(group.specialty)
+            specialties.add(group.specialty.name)
 
         return specialties
 
