@@ -27,28 +27,28 @@ class Group:
     students: list[Student]
 
 
-def write_groups_information(groups: list[Group]):
+def write_groups_information(groups: list[Group]) -> int:
     with open("groups.pickle", "wb") as file:
         pickle.dump(groups, file)
 
     return max(len(group.students) for group in groups)
 
 
-def write_students_information(students: list[Student]):
+def write_students_information(students: list[Student]) -> int:
     with open("students.pickle", "wb") as file:
         pickle.dump(students, file)
 
     return len(students)
 
 
-def read_groups_information():
+def read_groups_information() -> set:
     with open("groups.pickle", "rb") as file:
         data = pickle.load(file)
     # returns all group's specialties' names without repetition
     return set(group.specialty for group in data)
 
 
-def read_students_information():
+def read_students_information() -> list:
     with open("students.pickle", "rb") as file:
         data = pickle.load(file)
     # returns a list of all the Student class instances
