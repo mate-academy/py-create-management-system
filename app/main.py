@@ -30,6 +30,9 @@ class Group:
 def write_groups_information(groups: list[Group]) -> int:
     with open("groups.pickle", "wb") as file:
         pickle.dump(groups, file)
+    if not groups:
+        print("The groups list is empty.")
+        return 0
 
     max_students_all_groups = max(len(group.students) for group in groups)
     return max_students_all_groups
