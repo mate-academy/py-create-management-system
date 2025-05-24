@@ -14,7 +14,7 @@ class Specialty:
 class Student:
     first_name: str
     last_name: str
-    birth_date: str
+    birth_date: datetime
     average_mark: float
     has_scholarship: bool
     phone_number: int
@@ -43,7 +43,8 @@ def write_students_information(students: List[Student]) -> int:
 def read_groups_information(file_name: str = "groups.pickle") -> List[str]:
     with open(file_name, "rb") as file:
         groups = pickle.load(file)
-    return list({group.specialty.name for group in groups})
+    specialty_names = {group.specialty.name for group in groups}
+    return list(specialty_names)
 
 
 def read_students_information(file_name: str = "students.pickle") -> List[Student]:
