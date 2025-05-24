@@ -47,7 +47,9 @@ def read_groups_information(file_name: str = "groups.pickle") -> List[str]:
     return list(specialty_names)
 
 
-def read_students_information(file_name: str = "students.pickle") -> List[Student]:
+def read_students_information(
+    file_name: str = "students.pickle"
+) -> List[Student]:
     with open(file_name, "rb") as file:
         students = pickle.load(file)
     return students
