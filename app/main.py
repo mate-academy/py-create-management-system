@@ -1,7 +1,7 @@
 import dataclasses
 from datetime import datetime
 import pickle
-from typing import List, Set, Dict, Any
+from typing import List, Set
 
 
 @dataclasses.dataclass
@@ -89,7 +89,7 @@ def read_students_information() -> List[Student]:
             students: List[Student] = pickle.load(f)
         (print(f"Students information successfully "
                f"read from students.pickle. "
-              f"Total students: {len(students)}"))
+               f"Total students: {len(students)}"))
         return students
     except FileNotFoundError:
         print("Error: 'students.pickle' file not found.")
