@@ -35,12 +35,10 @@ def write_groups_information(groups: list[Group]) -> int:
     :return:
     This function returns the maximum number of students from all the groups.
     """
-    if not groups:
-        return 0
     with open("groups.pickle", "wb") as file:
         for group in groups:
             pickle.dump(group, file)
-    return max(len(group.students) for group in groups)
+    return max(len(group.students) for group in groups) if groups else 0
 
 
 def write_students_information(students: list[Student]) -> int:
@@ -52,8 +50,6 @@ def write_students_information(students: list[Student]) -> int:
     :return:
     This function returns the number of students.
     """
-    if not students:
-        return 0
     with open("students.pickle", "wb") as file:
         for student in students:
             pickle.dump(student, file)
@@ -72,7 +68,7 @@ def read_groups_information() -> list[str]:
             while True:
                 group = pickle.load(file)
                 specialties.add(group.specialty.name)
-    except EOFError:
+    except (EOFError, ValueError):
         pass
     return list(specialties)
 
