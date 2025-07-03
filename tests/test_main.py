@@ -310,7 +310,7 @@ def test_read_groups_information(groups, result):
     with CleanUpFile("groups.pickle"):
 
         write_groups_information(groups)
-        specialties = read_groups_information()
+        specialties = read_groups_information("groups.pickle")
         assert sorted(specialties) == sorted(result), (
             f"Function read_groups_information must return a list of all specialties names, "
             f"expected: {result}, but actual returned: {specialties}"
@@ -335,7 +335,7 @@ def test_read_students_information(students):
 
     with CleanUpFile("students.pickle"):
         write_students_information(students)
-        students_list = read_students_information()
+        students_list = read_students_information("students.pickle")
 
         assert students_list == students, (
             f"Function read_students_information must return a list of all students, "
