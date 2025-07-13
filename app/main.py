@@ -38,20 +38,20 @@ def write_groups_information(groups: List[Group]) -> int:
             list_students.append(count_students)
         max_students = max(list_students)
 
-    with open('groups.pickle', 'wb') as f:
+    with open("groups.pickle", "wb") as f:
         pickle.dump(groups, f)
 
     return max_students
 
 
 def write_students_information(students: List[Student]) -> int:
-    with open('students.pickle', 'wb') as f:
+    with open("students.pickle", "wb") as f:
         pickle.dump(students, f)
     return len(students)
 
 
 def read_groups_information() -> list[str]:
-    with open('groups.pickle', 'rb') as f:
+    with open("groups.pickle", "rb") as f:
         groups = pickle.load(f)
 
         specialty_names = []
@@ -63,7 +63,7 @@ def read_groups_information() -> list[str]:
 
 def read_students_information() -> List[Student]:
     try:
-        with open('students.pickle', 'rb') as f:
+        with open("students.pickle", "rb") as f:
             return pickle.load(f)
     except FileNotFoundError:
         return []
