@@ -68,4 +68,3 @@ def read_students_information() -> List[Student]:
         return []
 
     return students
-
