@@ -19,6 +19,7 @@ class Student:
     phone_number: str
     address: str
 
+
 @dataclass
 class Group:
     specialty: Specialty
