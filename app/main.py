@@ -5,13 +5,13 @@ from typing import List
 
 
 @dataclasses.dataclass
-class Especialidade:
+class Specialty:
     name: str
     number: int
 
 
 @dataclasses.dataclass
-class Estudante:
+class Student:
     first_name: str
     last_name: str
     birth_date: datetime
@@ -22,41 +22,47 @@ class Estudante:
 
 
 @dataclasses.dataclass
-class Grupo:
-    specialty: Especialidade
+class Group:
+    specialty: Specialty
     course: int
-    students: List[Estudante]
+    students: List[Student]
 
 
-# --- Funções com pickle ---
+# ------------------ Functions ------------------ #
 
-def informacoes_de_grupos_de_gravacao(groups: List[Grupo]) -> int:
-    """Grava os grupos em groups.pickle e retorna o maior número de alunos entre eles"""
-    with open("groups.pickle", "wb") as f:
-        pickle.dump(groups, f)
+def write_groups_information(groups: List[Group]) -> int:
+    """Writes group information to groups.pickle and
+    returns the maximum number of students in any group"""
+    with open("groups.pickle", "wb") as outfile:
+        pickle.dump(groups, outfile)
 
-    # calcula o máximo de alunos
-    max_students = max((len(group.students) for group in groups), default=0)
+    max_students = max(
+        (len(group.students) for group in groups),
+        default=0
+    )
     return max_students
 
 
-def escrever_informacoes_para_os_alunos(students: List[Estudante]) -> int:
-    """Grava todos os alunos em students.pickle e retorna a quantidade"""
-    with open("students.pickle", "wb") as f:
-        pickle.dump(students, f)
+def write_students_information(students: List[Student]) -> int:
+    """Writes students information to students.pickle and
+    returns the number of students"""
+    with open("students.pickle", "wb") as outfile:
+        pickle.dump(students, outfile)
     return len(students)
 
 
-def informacoes_de_grupos_de_leitura() -> List[str]:
-    """Lê groups.pickle e retorna nomes de especialidades sem repetição"""
-    with open("groups.pickle", "rb") as f:
-        groups = pickle.load(f)
+def read_groups_information() -> List[str]:
+    """Reads groups.pickle and returns all specialties' names
+    without repetition"""
+    with open("groups.pickle", "rb") as infile:
+        groups = pickle.load(infile)
     specialties = {group.specialty.name for group in groups}
     return list(specialties)
 
 
-def ler_informacoes_para_os_alunos() -> List[Estudante]:
-    """Lê students.pickle e retorna lista de instâncias de Estudante"""
-    with open("students.pickle", "rb") as f:
-        students = pickle.load(f)
+def read_students_information() -> List[Student]:
+    """Reads students.pickle and returns the list of Student
+    instances"""
+    with open("students.pickle", "rb") as infile:
+        students = pickle.load(infile)
     return students
