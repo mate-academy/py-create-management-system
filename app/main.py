@@ -24,7 +24,7 @@ class Student:
 @dataclass
 class Group:
     course: int
-    specialty : Speciality
+    specialty : Specialty
     students : List[Student]
 
 
