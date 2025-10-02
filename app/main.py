@@ -5,7 +5,7 @@ from typing import List
 
 
 @dataclass
-class Speciality:
+class Specialty:
     name : str
     number : int
 
