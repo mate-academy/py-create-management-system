@@ -23,8 +23,8 @@ class Student:
 
 @dataclass
 class Group:
-    course: int
     specialty : Specialty
+    course: int
     students : List[Student]
 
 
@@ -34,6 +34,8 @@ def write_groups_information(groups_list: List[Group]) -> int:
         pickle.dump(groups_list, file)
         for group in groups_list:
             result.append(len(group.students))
+    if not result :
+        return 0
     return max(result)
 
 
