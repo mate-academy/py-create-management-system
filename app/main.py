@@ -36,7 +36,10 @@ def write_groups_information(groups: List[Group]):
     high = []
     for group in groups:
         high.append(len(group.students))
-    return max(high)
+    if high == []:
+        print("Nenhum grupo foi encontrado.")
+    else:
+        return max(high)
 
 
 def write_students_information(students: List[Student]):
@@ -46,7 +49,7 @@ def write_students_information(students: List[Student]):
     return len(students)
 
 
-def read_groups_information(groups: List[Group]):
+def read_groups_information():
     """Lê os grupos do arquivo e retorna a lista de especialidades sem repetição."""
     with open("groups.pickle", "rb") as file:
         groups = pickle.load(file)
@@ -59,7 +62,7 @@ def read_groups_information(groups: List[Group]):
     return especialides
 
 
-def read_students_information(students: List[Student]):
+def read_students_information():
     """Lê os estudantes do arquivo e retorna a lista completa."""
     with open("students.pickle", "rb") as file:
         students = pickle.load(file)
