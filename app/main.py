@@ -60,6 +60,7 @@ def write_students_information(students: list[Student]) -> int:
 
     return students_count
 
+
 def read_groups_information() -> set[str]:
     file_name = "groups.pickle"
     unique_speciality_names = set()
@@ -73,6 +74,7 @@ def read_groups_information() -> set[str]:
         print(error)
 
     return unique_speciality_names
+
 
 def read_students_information() -> list[Student]:
     file_name = "students.pickle"
