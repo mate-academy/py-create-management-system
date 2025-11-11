@@ -111,7 +111,13 @@ if __name__ == "__main__":
     g1 = Group(specialty=spec1, course=1, students=[s1, s2])
     g2 = Group(specialty=spec2, course=2, students=[s3])
 
-    print("Max students in a group:", write_groups_information([g1, g2]))
-    print("Number of students saved:", write_students_information([s1, s2, s3]))
+    print(
+        "Max students in a group:",
+        write_groups_information([g1, g2]),
+    )
+    print(
+        "Number of students saved:",
+        write_students_information([s1, s2, s3]),
+    )
     print("Specialties in groups:", read_groups_information())
     print("Loaded students:", read_students_information())
