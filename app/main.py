@@ -4,10 +4,12 @@ from datetime import datetime
 import pickle
 from typing import List
 
+
 @dataclass
 class Specialty:
     name: str
     number: int
+
 
 @dataclass
 class Student:
@@ -19,21 +21,25 @@ class Student:
     phone_number: str
     address: str
 
+
 @dataclass
 class Group:
     specialty: Specialty
     course: int
     students: List[Student]
 
+
 def write_groups_information(groups: List[Group]) -> int:
     with open("groups.pickle", "wb") as f:
         pickle.dump(groups, f)
     return max(len(group.students) for group in groups) if groups else 0
 
+
 def write_students_information(students: List[Student]) -> int:
     with open("students.pickle", "wb") as f:
         pickle.dump(students, f)
     return len(students)
+
 
 def read_groups_information() -> List[str]:
     with open("groups.pickle", "rb") as f:
@@ -41,8 +47,8 @@ def read_groups_information() -> List[str]:
     specialties = {group.specialty.name for group in groups}
     return list(specialties)
 
+
 def read_students_information() -> List[Student]:
     with open("students.pickle", "rb") as f:
         students = pickle.load(f)
     return students
-
