@@ -32,6 +32,9 @@ def write_groups_information(groups: List[Group]) -> int:
     with open("groups.pickle", "wb") as file:
         for group in groups:
             pickle.dump(group, file)
+
+    if not groups:  # якщо список порожній
+        return 0
     return max([len(group.students) for group in groups])
 
 
