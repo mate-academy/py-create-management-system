@@ -26,11 +26,12 @@ class Group:
     course: int
     students: list[Student]
 
+
 def write_groups_information(list_of_groups: list[Group]) -> int:
     with open("groups.pickle", "wb") as file:
         pickle.dump(list_of_groups, file)
 
-    return max(len(group.students) for group in list_of_groups)
+    return max((len(group.students) for group in list_of_groups), default=None)
 
 
 def write_students_information(list_of_students: list[Student]) -> int:
@@ -39,11 +40,13 @@ def write_students_information(list_of_students: list[Student]) -> int:
 
     return len(list_of_students)
 
-def read_groups_information():
+
+def read_groups_information() -> set[Group]:
     with open("groups.pickle", "rb") as file:
         data = pickle.load(file)
     return set(group.specialty.name for group in data)
 
-def read_students_information():
+
+def read_students_information() -> list[Student]:
     with open("students.pickle", "rb") as file:
         return pickle.load(file)
