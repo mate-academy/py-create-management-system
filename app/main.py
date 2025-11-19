@@ -32,3 +32,4 @@ class Group:
 def write_groups_information(groups: list[Group]) -> int:
     pass
     pass
+    pass
