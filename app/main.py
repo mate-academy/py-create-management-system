@@ -29,13 +29,13 @@ class Group:
 
 
 def write_groups_information(groups_data: list[Group]) -> int:
-    number_of_students = 0
+    max_number_of_students = 0
     with open("groups.pickle", "wb") as file:
         for group in groups_data:
             pickle.dump(group, file)
-            if number_of_students < len(group.students):
-                number_of_students = len(group.students)
-    return number_of_students
+            if max_number_of_students < len(group.students):
+                max_number_of_students = len(group.students)
+    return max_number_of_students
 
 
 def write_students_information(students_data: list[Student]) -> int:
