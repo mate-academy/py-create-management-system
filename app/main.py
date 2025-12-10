@@ -52,7 +52,7 @@ def write_students_information(list_of_students: list[Student]) -> int:
 
 def read_groups_information() -> list[Group]:
     if not os.path.exists("groups.pickle"):
-        return []   # or return [] or return 0 — your choice
+        return []
 
     with open("groups.pickle", "rb") as file:
         list_of_groups = pickle.load(file)
