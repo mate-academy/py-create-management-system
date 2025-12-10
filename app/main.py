@@ -29,41 +29,18 @@ class Group:
 
 
 def write_groups_information(list_of_groups: list[Group]) -> int:
-    if not list_of_groups:
+    number_of_students = 0
+    if len(list_of_groups) == 0:
         return 0
 
-    # Count all students in all groups
-    number_of_students = sum(len(group.students) for group in list_of_groups)
+    for group in list_of_groups:
+        if number_of_students < len(group.students):
+            number_of_students = len(group.students)
 
-    # Save groups data
     with open("groups.pickle", "wb") as file:
         pickle.dump(list_of_groups, file)
 
     return number_of_students
-
-# def write_groups_information(list_of_groups: list[Group]) -> int:
-#     number_of_students = 0
-#     if len(list_of_groups) == 0:
-#         return 0
-#
-#     for group in list_of_groups:
-#         number_of_students += len(group.students)
-#
-#     # students_list = []
-#     # for group in list_of_groups:
-#     #     students_list.append(group.students)
-#     #
-#     # students_list = list(dict.fromkeys(students_list))
-#
-#     # for student_name_list in students_list:
-#     #     student_name_list[0].append
-#     # students_list = list(set(students_list))
-#     # number_of_students = len(students_list)
-#
-#     with open("groups.pickle", "wb") as file:
-#         pickle.dump(list_of_groups, file)
-#
-#     return number_of_students
 
 
 def write_students_information(list_of_students: list[Student]) -> int:
