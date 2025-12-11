@@ -63,7 +63,6 @@ def read_groups_information() -> list[Group]:
         group_specialites_names = []
         for group in list_of_groups:
             group_specialites_names.append(group.specialty.name)
-
         group_specialites_names = list(set(group_specialites_names))
 
         return group_specialites_names
