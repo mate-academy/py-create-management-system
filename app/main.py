@@ -51,5 +51,3 @@ def read_students_information() -> list[Student]:
     with open("students.pickle", "rb") as file:
         data_students = pickle.load(file)
         return data_students
-
-
