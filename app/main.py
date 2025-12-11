@@ -26,7 +26,7 @@ class Student:
 class Group:
     specialty: Specialty
     course: int
-    students: list[Student]
+    students: List[Student]
 
 
 def write_groups_information(list_of_groups: list[Group]) -> int:
