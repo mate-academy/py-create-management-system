@@ -1,8 +1,6 @@
 import dataclasses
 from datetime import datetime
 import pickle
-import os
-from typing import List
 
 
 @dataclasses.dataclass
@@ -25,52 +23,36 @@ class Student:
 @dataclasses.dataclass
 class Group:
     specialty: Specialty
-    course: int
-    students: List[Student]
+    course: str
+    students: list[Student]
 
 
-def write_groups_information(list_of_groups: list[Group]) -> int:
-    number_of_students = 0
-    if len(list_of_groups) == 0:
-        return 0
-
-    for group in list_of_groups:
-        if number_of_students < len(group.students):
-            number_of_students = len(group.students)
-
+def write_groups_information(groups: list[Group]) -> int:
     with open("groups.pickle", "wb") as file:
-        pickle.dump(list_of_groups, file)
+        pickle.dump(groups, file)
 
-    return number_of_students
+    students_count = []
+    for group in groups:
+        students_count.append(len(group.students))
+    return max(students_count) if students_count else 0
 
 
-def write_students_information(list_of_students: list[Student]) -> int:
+def write_students_information(students: list[Student]) -> int:
     with open("students.pickle", "wb") as file:
-        pickle.dump(list_of_students, file)
+        pickle.dump(students, file)
 
-    return len(list_of_students)
+    return len(students)
 
 
-def read_groups_information() -> list[Group]:
-    if not os.path.exists("groups.pickle"):
-        return []
-
+def read_groups_information() -> set:
     with open("groups.pickle", "rb") as file:
-        list_of_groups = pickle.load(file)
+        groups_list = pickle.load(file)
 
-        if list_of_groups is None:
-            return []
-
-        group_specialites_names = []
-        for group in list_of_groups:
-            group_specialites_names.append(group.specialty.name)
-        group_specialites_names = list(set(group_specialites_names))
-
-        return group_specialites_names
+    spec_names = [group.specialty.name for group in groups_list]
+    return set(spec_names)
 
 
-def read_students_information() -> list[Student]:
+def read_students_information() -> list:
     with open("students.pickle", "rb") as file:
-        list_of_students = pickle.load(file)
-
-        return list_of_students
+        students_list = pickle.load(file)
+    return students_list
