@@ -2,6 +2,7 @@ import dataclasses
 from datetime import datetime
 import pickle
 import os
+from typing import List
 
 
 @dataclasses.dataclass
