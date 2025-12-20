@@ -56,3 +56,7 @@ def read_students_information() -> list:
     with open("students.pickle", "rb") as file:
         students_list = pickle.load(file)
     return students_list
+
+"""
+comment
+"""
