@@ -3,7 +3,7 @@
 
 import dataclasses
 from datetime import date
-from typing import List, Set
+from typing import List
 import pickle
 
 
@@ -87,4 +87,4 @@ def read_students_information() -> List[Student]:
     except FileNotFoundError:
         return []
 
-    return  students
+    return students
