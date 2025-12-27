@@ -27,29 +27,29 @@ class Group:
     students: list[Student] = dataclasses.field(default_factory=list)
 
 
-def write_group_information(groups: list[Group]) -> int:
-    max_studesnts = 0
-    with open("groups.pickle", "wb") as file_name:
+def write_groups_information(groups: list[Group]) -> int:
+    max_students = 0
+    with open("groups.pickle", "wb") as file:
         for group in groups:
-            pickle.dump(group, file_name)
-            if len(group.students) > max_studesnts:
-                max_studesnts = len(group.students)
-    return max_studesnts
+            pickle.dump(group, file)
+            if len(group.students) > max_students:
+                max_students = len(group.students)
+    return max_students
 
 
-def write_student_information(students: list[Student]) -> int:
-    with open("students.pickle", "wb") as file_name:
+def write_students_information(students: list[Student]) -> int:
+    with open("students.pickle", "wb") as file:
         for student in students:
-            pickle.dump(student, file_name)
+            pickle.dump(student, file)
     return len(students)
 
 
 def read_groups_information() -> list[str]:
     unique_names = set()
-    with open("groups.pickle", "rb") as file_name:
+    with open("groups.pickle", "rb") as file:
         while True:
             try:
-                group = pickle.load(file_name)
+                group = pickle.load(file)
             except EOFError:
                 break
             unique_names.add(group.specialty.name)
@@ -58,10 +58,10 @@ def read_groups_information() -> list[str]:
 
 def read_students_information() -> list[Student]:
     students: list[Student] = []
-    with open("students.pickle", "rb") as file_name:
+    with open("students.pickle", "rb") as file:
         while True:
             try:
-                student = pickle.load(file_name)
+                student = pickle.load(file)
             except EOFError:
                 break
             students.append(student)
