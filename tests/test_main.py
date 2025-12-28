@@ -1,6 +1,7 @@
 import pytest
-import os
 import unittest.mock
+import os
+
 
 from datetime import date
 
