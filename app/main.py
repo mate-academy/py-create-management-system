@@ -41,7 +41,7 @@ def write_students_information(students: list[Student]) -> int:
     return len(students)
 
 
-def read_groups_information():
+def read_groups_information() -> list:
     speciality_list = []
     with open("groups.pickle", "rb") as pickle_file:
         while True:
