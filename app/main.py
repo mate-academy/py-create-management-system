@@ -28,7 +28,7 @@ class Group:
 
 
 def write_groups_information(groups: list[Group]) -> int:
-    with open("groups.pickle", 'wb') as file:
+    with open("groups.pickle", "wb") as file:
         pickle.dump(groups, file)
         if not groups:
             return 0
@@ -36,25 +36,25 @@ def write_groups_information(groups: list[Group]) -> int:
 
 
 def write_students_information(students: list[Student]) -> int:
-    with open("students.pickle", 'wb') as file:
+    with open("students.pickle", "wb") as file:
         pickle.dump(students, file)
         return len(students)
 
 
 def read_groups_information() -> list[str]:
-    with open("groups.pickle", 'rb') as file:
+    with open("groups.pickle", "rb") as file:
         groups = pickle.load(file)
         groups_specialty = []
-        for g in groups:
-            g = g.specialty.name
-            if not g:
+        for grp in groups:
+            grp = grp.specialty.name
+            if not grp:
                 continue
-            groups_specialty.append(g)
+            groups_specialty.append(grp)
         groups_specialty = list(set(groups_specialty))
         return groups_specialty
 
 
 def read_students_information() -> list[Student]:
-    with open("students.pickle", 'rb') as file:
+    with open("students.pickle", "rb") as file:
         students = pickle.load(file)
         return students
