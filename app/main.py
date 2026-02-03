@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 import pickle
 
@@ -23,8 +23,17 @@ class Student:
 @dataclass
 class Group:
     specialty: Specialty
-    students: list[Student]
     course: int
+    students: list = field(default_factory=list)
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.course, int):
+            raise TypeError(f"course must be int,"
+                            f" not {type(self.course).__name__}")
+
+        if not isinstance(self.students, list):
+            raise TypeError(f"students must be list,"
+                            f" not {type(self.students).__name__}")
 
 
 def write_groups_information(groups: list[Group]) -> int:
