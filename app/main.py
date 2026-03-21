@@ -54,4 +54,4 @@ def read_groups_information() -> list[str]:
 def read_students_information() -> list[Student]:
     with open("students.pickle", "rb") as f:
         students = pickle.load(f)
-    return student
+    return students
