@@ -1,34 +1,67 @@
 import pickle
-from dataclasses import dataclass
 
 
-@dataclass
 class Specialty:
-    name: str
-    number: int
+    def __init__(self, name: str, number: int) -> None:
+        self.name = name
+        self.number = number
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Specialty):
+            return False
+        return self.name == other.name and self.number == other.number
 
 
-@dataclass
 class Student:
-    first_name: str
-    last_name: str
-    birth_date: str
-    average_mark: float
-    has_scholarship: bool
-    phone_number: str
-    address: str
+    def __init__(
+        self,
+        first_name: str,
+        last_name: str,
+        birth_date: str,
+        average_mark: float,
+        has_scholarship: bool,
+        phone_number: str,
+        address: str,
+    ) -> None:
+        self.first_name = first_name
+        self.last_name = last_name
+        self.birth_date = birth_date
+        self.average_mark = average_mark
+        self.has_scholarship = has_scholarship
+        self.phone_number = phone_number
+        self.address = address
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Student):
+            return False
+        return (
+            self.first_name == other.first_name
+            and self.last_name == other.last_name
+            and self.average_mark == other.average_mark
+        )
 
 
-@dataclass
 class Group:
-    specialty: Specialty
-    course: int
-    students: list[Student]
+    def __init__(
+        self, specialty: Specialty, course: int, students: list[Student]
+    ) -> None:
+        self.specialty = specialty
+        self.course = course
+        self.students = students
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Group):
+            return False
+        return (
+            self.specialty == other.specialty
+            and self.course == other.course
+            and self.students == other.students
+        )
 
 
-def write_groups_information(groups: list[Group],
-                             filename: str = "groups.pickle"):
-    with open(filename, 'wb') as f:
+def write_groups_information(groups: list[Group]) -> int:
+    filename = "groups.pickle"
+    with open(filename, "wb") as f:
         pickle.dump(groups, f)
 
     if not groups:
@@ -37,40 +70,39 @@ def write_groups_information(groups: list[Group],
     return max(len(group.students) for group in groups)
 
 
-def write_students_information(students: list[Student],
-                               filename: str = "students.pickle"):
-    with open(filename, 'wb') as f:
+def write_students_information(students: list[Student]) -> int:
+    filename = "students.pickle"
+    with open(filename, "wb") as f:
         pickle.dump(students, f)
 
     return len(students)
 
 
-def read_groups_information(filename: str = "groups.pickle"):
-    all_data = []
+def read_groups_information() -> list[str]:
+    groups_data = []
+    filename = "groups.pickle"
     try:
-        with open(filename, 'rb') as f:
+        with open(filename, "rb") as f:
             while True:
                 try:
                     obj = pickle.load(f)
-                    # Если записан список групп, объединяем списки
                     if isinstance(obj, list):
-                        all_data.extend(obj)
+                        groups_data.extend(obj)
                     else:
-                        all_data.append(obj)
+                        groups_data.append(obj)
                 except EOFError:
                     break
     except FileNotFoundError:
         return []
 
-    # Извлекаем уникальные названия специальностей
-    unique_specs = {group.specialty.name for group in all_data}
-    return list(unique_specs)
+    return list({group.specialty.name for group in groups_data})
 
 
-def read_students_information(filename: str = "students.pickle"):
+def read_students_information() -> list[Student]:
     students = []
+    filename = "students.pickle"
     try:
-        with open(filename, 'rb') as f:
+        with open(filename, "rb") as f:
             while True:
                 try:
                     obj = pickle.load(f)
