@@ -1,6 +1,7 @@
 import dataclasses
 import pickle
 from datetime import datetime
+from typing import Any
 
 
 @dataclasses.dataclass
@@ -27,31 +28,31 @@ class Group:
     students: list
 
 
-def read_students_information():
+def read_students_information() -> Any:
     with open("students.pickle", "rb") as f:
         data = pickle.load(f)
     return data
 
 
-def write_students_information(students_list):
+def write_students_information(students_list: list) -> int:
     with open("students.pickle", "wb") as f:
         pickle.dump(students_list, f)
     return len(students_list)
 
 
-def read_groups_information():
+def read_groups_information() -> list:
     with open("groups.pickle", "rb") as f:
         all_groups = pickle.load(f)
 
     names = []
-    for g in all_groups:
-        cur_name = g.specialty.name
+    for grp in all_groups:
+        cur_name = grp.specialty.name
         if cur_name not in names:
             names.append(cur_name)
     return names
 
 
-def write_groups_information(groups_data):
+def write_groups_information(groups_data: Any) -> int:
     with open("groups.pickle", "wb") as f:
         pickle.dump(groups_data, f)
 
