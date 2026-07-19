@@ -46,14 +46,25 @@ def write_students_information(students: list[Student]) -> int:
     return len(students)
 
 
-def read_groups_information() -> None:
+def read_groups_information() -> list[Group]:
     groups = []
     with open("groups.pickle", "rb") as pickle_file:
-        groups.append(pickle.load(pickle_file))
+        while True:
+            try:
+                name_read = pickle.load(pickle_file).specialty.name
+                if name_read not in groups:
+                    groups.append(name_read)
+            except EOFError:
+                break
+    return groups
 
 
 def read_students_information() -> list[Student]:
     students = []
     with open("students.pickle", "rb") as pickle_file:
-        students.append(pickle.load(pickle_file))
+        while True:
+            try:
+                students.append(pickle.load(pickle_file))
+            except EOFError:
+                break
     return students
