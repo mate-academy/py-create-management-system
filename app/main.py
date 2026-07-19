@@ -29,7 +29,7 @@ class Group:
     students: list[Student]
 
 
-def write_groups_information(groups: list[Group]):
+def write_groups_information(groups: list[Group]) -> int:
     student_number: int = 0
     with open("groups.pickle", "wb") as pickle_file:
         for group in groups:
@@ -38,18 +38,21 @@ def write_groups_information(groups: list[Group]):
             pickle.dump(group, pickle_file)
     return student_number
 
-def write_students_information(students: list[Student]):
+
+def write_students_information(students: list[Student]) -> int:
     with open("students.pickle", "wb") as pickle_file:
         for student in students:
             pickle.dump(student, pickle_file)
     return len(students)
 
-def read_groups_information():
+
+def read_groups_information() -> None:
     groups = []
     with open("groups.pickle", "rb") as pickle_file:
         groups.append(pickle.load(pickle_file))
 
-def read_students_information():
+
+def read_students_information() -> list[Student]:
     students = []
     with open("students.pickle", "rb") as pickle_file:
         students.append(pickle.load(pickle_file))
