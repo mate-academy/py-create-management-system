@@ -14,7 +14,7 @@ import dataclasses
 ```
  
 Let`s implement 3 classes:
- 
+
 1. **Specialty**
 
 It has the following attributes:
