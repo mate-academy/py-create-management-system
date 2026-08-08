@@ -8,9 +8,10 @@ You have to implement the above system using the `dataclasses` module.
 
 
 You can import the module in such way:
- 
+
 ```python
-import dataclasses
+
+from app import my_dataclasses
 ```
  
 Let`s implement 3 classes:
