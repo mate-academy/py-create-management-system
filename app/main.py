@@ -3,7 +3,6 @@ from datetime import date
 import pickle
 
 
-# 1. Оголошуємо Дата-класи
 @dataclass
 class Specialty:
     name: str
