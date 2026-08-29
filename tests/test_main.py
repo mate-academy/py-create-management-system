@@ -6,7 +6,7 @@ from datetime import date
 
 import app.main
 from app.main import (
-    Specialty,
+    Speciality,
     Student,
     Group,
     write_groups_information,
@@ -31,8 +31,8 @@ def basic_student(
 
 
 @pytest.fixture
-def specialty_init():
-    return Specialty("Math and Physic", 1)
+def speciality_init():
+    return Speciality("Math and Physic", 1)
 
 
 @pytest.fixture
@@ -59,10 +59,10 @@ class CleanUpFile:
         "number"
     ]
 )
-def test_specialty_instance(attribute, specialty_init):
+def test_speciality_instance(attribute, speciality_init):
     assert hasattr(
-        specialty_init, attribute
-    ), f"Specialty instance should have attribute '{attribute}'"
+        speciality_init, attribute
+    ), f"speciality instance should have attribute '{attribute}'"
 
 
 @pytest.mark.parametrize(
@@ -72,10 +72,10 @@ def test_specialty_instance(attribute, specialty_init):
         ("number", int)
     ]
 )
-def test_specialty_instance_type(attribute, attr_type, specialty_init):
+def test_speciality_instance_type(attribute, attr_type, speciality_init):
     assert isinstance(
-        getattr(specialty_init, attribute), attr_type
-    ), f"Specialty instance attribute '{attribute}' should be {attr_type}"
+        getattr(speciality_init, attribute), attr_type
+    ), f"speciality instance attribute '{attribute}' should be {attr_type}"
 
 
 @pytest.mark.parametrize(
@@ -111,19 +111,19 @@ def test_student_instance(attribute, student_init):
 def test_student_instance_type(attribute, attr_type, student_init):
     assert isinstance(
         getattr(student_init, attribute), attr_type
-    ), f"Specialty instance attribute '{attribute}' should be {attr_type}"
+    ), f"speciality instance attribute '{attribute}' should be {attr_type}"
 
 
 @pytest.mark.parametrize(
     "attribute",
     [
-        "specialty",
+        "speciality",
         "course",
         "students",
     ],
 )
-def test_group_instance(attribute, specialty_init, student_init):
-    group = Group(specialty_init, 1, [student_init])
+def test_group_instance(attribute, speciality_init, student_init):
+    group = Group(speciality_init, 1, [student_init])
 
     assert hasattr(
         group, attribute
@@ -133,27 +133,27 @@ def test_group_instance(attribute, specialty_init, student_init):
 @pytest.mark.parametrize(
     "attribute,attr_type",
     [
-        ("specialty", Specialty),
+        ("speciality", Speciality),
         ("course", int),
         ("students", list),
     ],
 )
-def test_group_instance_type(attribute, attr_type, specialty_init, student_init):
-    group = Group(specialty_init, 1, [student_init])
+def test_group_instance_type(attribute, attr_type, speciality_init, student_init):
+    group = Group(speciality_init, 1, [student_init])
 
     assert isinstance(
         getattr(group, attribute), attr_type
-    ), f"Specialty instance attribute '{attribute}' should be {attr_type}"
+    ), f"speciality instance attribute '{attribute}' should be {attr_type}"
 
 
 @pytest.mark.parametrize(
     "kwargs,result",
     [
-        ([Group(specialty=Specialty("Math and Physic", 1), course=1, students=[])], 0),
+        ([Group(speciality=Speciality("Math and Physic", 1), course=1, students=[])], 0),
         (
             [
                 Group(
-                    specialty=Specialty("Math and Physic", 1),
+                    speciality=Speciality("Math and Physic", 1),
                     course=1,
                     students=[basic_student()],
                 )
@@ -163,7 +163,7 @@ def test_group_instance_type(attribute, attr_type, specialty_init, student_init)
         (
             [
                 Group(
-                    specialty=Specialty("English", 2),
+                    speciality=Speciality("English", 2),
                     course=2,
                     students=[
                         basic_student(),
@@ -172,7 +172,7 @@ def test_group_instance_type(attribute, attr_type, specialty_init, student_init)
                     ],
                 ),
                 Group(
-                    specialty=Specialty("Biology", 2),
+                    speciality=Speciality("Biology", 2),
                     course=1,
                     students=[basic_student()],
                 ),
@@ -192,9 +192,9 @@ def test_write_groups_information(kwargs, result):
 @pytest.mark.parametrize(
     "group",
     [
-        Group(specialty=Specialty("Math and Physic", 1), course=1, students=[]),
+        Group(speciality=Speciality("Math and Physic", 1), course=1, students=[]),
         Group(
-            specialty=Specialty("Biology", 2),
+            speciality=Speciality("Biology", 2),
             course=1,
             students=[basic_student()],
         ),
@@ -263,18 +263,18 @@ def test_write_students_information_created_file(students):
     [
         ([], []),
         (
-            [Group(specialty=Specialty("Math and Physic", 1), course=1, students=[])],
+            [Group(speciality=Speciality("Math and Physic", 1), course=1, students=[])],
             ["Math and Physic"],
         ),
         (
             [
                 Group(
-                    specialty=Specialty("Biology", 2),
+                    speciality=Speciality("Biology", 2),
                     course=1,
                     students=[basic_student()],
                 ),
                 Group(
-                    specialty=Specialty("English", 1),
+                    speciality=Speciality("English", 1),
                     course=2,
                     students=[
                         basic_student(),
@@ -288,7 +288,7 @@ def test_write_students_information_created_file(students):
         (
             [
                 Group(
-                    specialty=Specialty("English", 1),
+                    speciality=Speciality("English", 1),
                     course=2,
                     students=[
                         basic_student(),
@@ -297,7 +297,7 @@ def test_write_students_information_created_file(students):
                     ],
                 ),
                 Group(
-                    specialty=Specialty("English", 2),
+                    speciality=Speciality("English", 2),
                     course=1,
                     students=[basic_student()],
                 ),
