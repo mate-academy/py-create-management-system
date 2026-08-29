@@ -1,1 +1,72 @@
-# write your code here
+import dataclasses
+from datetime import datetime
+import pickle
+
+
+@dataclasses.dataclass
+class Specialty:
+    name: str
+    number: int
+
+
+@dataclasses.dataclass
+class Student:
+    first_name: str
+    last_name: str
+    birth_date: datetime
+    average_mark: float
+    has_scholarship: bool
+    phone_number: str
+    address: str
+
+
+@dataclasses.dataclass
+class Group:
+    specialty: Specialty
+    course: int
+    students: list  # list of Student objects
+
+
+def write_groups_information(groups: list) -> int:
+    """
+    Writes the list of Group instances to groups.pickle.
+    Returns the maximum number of students in any group.
+    """
+    with open("groups.pickle", "wb") as f:
+        pickle.dump(groups, f)
+
+    if not groups:
+        return 0
+
+    return max(len(group.students) for group in groups)
+
+
+def write_students_information(students: list) -> int:
+    """
+    Writes all Student instances into students.pickle.
+    Returns the number of students.
+    """
+    with open("students.pickle", "wb") as f:
+        pickle.dump(students, f)
+
+    return len(students)
+
+
+def read_groups_information() -> list:
+    """
+    Reads data from groups.pickle.
+    Returns a list of specialties' names without repetition.
+    """
+    with open("groups.pickle", "rb") as f:
+        groups = pickle.load(f)
+
+    specialties = {group.specialty.name for group in groups}
+    return list(specialties)
+
+
+def read_students_information() -> list:
+    """
+    Reads and returns all Student instances from students.pickle.
+    """
+    with open("students.pickle", "rb") as f:
+        return pickle.load(f)
