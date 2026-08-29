@@ -117,7 +117,7 @@ def test_student_instance_type(attribute, attr_type, student_init):
 @pytest.mark.parametrize(
     "attribute",
     [
-        "specialty",
+        "speciality",
         "course",
         "students",
     ],
@@ -133,7 +133,7 @@ def test_group_instance(attribute, specialty_init, student_init):
 @pytest.mark.parametrize(
     "attribute,attr_type",
     [
-        ("specialty", Specialty),
+        ("speciality", Specialty),
         ("course", int),
         ("students", list),
     ],
@@ -149,11 +149,11 @@ def test_group_instance_type(attribute, attr_type, specialty_init, student_init)
 @pytest.mark.parametrize(
     "kwargs,result",
     [
-        ([Group(specialty=Specialty("Math and Physic", 1), course=1, students=[])], 0),
+        ([Group(speciality=Specialty("Math and Physic", 1), course=1, students=[])], 0),
         (
             [
                 Group(
-                    specialty=Specialty("Math and Physic", 1),
+                    speciality=Specialty("Math and Physic", 1),
                     course=1,
                     students=[basic_student()],
                 )
@@ -163,7 +163,7 @@ def test_group_instance_type(attribute, attr_type, specialty_init, student_init)
         (
             [
                 Group(
-                    specialty=Specialty("English", 2),
+                    speciality=Specialty("English", 2),
                     course=2,
                     students=[
                         basic_student(),
@@ -172,7 +172,7 @@ def test_group_instance_type(attribute, attr_type, specialty_init, student_init)
                     ],
                 ),
                 Group(
-                    specialty=Specialty("Biology", 2),
+                    speciality=Specialty("Biology", 2),
                     course=1,
                     students=[basic_student()],
                 ),
@@ -192,9 +192,9 @@ def test_write_groups_information(kwargs, result):
 @pytest.mark.parametrize(
     "group",
     [
-        Group(specialty=Specialty("Math and Physic", 1), course=1, students=[]),
+        Group(speciality=Specialty("Math and Physic", 1), course=1, students=[]),
         Group(
-            specialty=Specialty("Biology", 2),
+            speciality=Specialty("Biology", 2),
             course=1,
             students=[basic_student()],
         ),
@@ -263,18 +263,18 @@ def test_write_students_information_created_file(students):
     [
         ([], []),
         (
-            [Group(specialty=Specialty("Math and Physic", 1), course=1, students=[])],
+            [Group(speciality=Specialty("Math and Physic", 1), course=1, students=[])],
             ["Math and Physic"],
         ),
         (
             [
                 Group(
-                    specialty=Specialty("Biology", 2),
+                    speciality=Specialty("Biology", 2),
                     course=1,
                     students=[basic_student()],
                 ),
                 Group(
-                    specialty=Specialty("English", 1),
+                    speciality=Specialty("English", 1),
                     course=2,
                     students=[
                         basic_student(),
@@ -288,7 +288,7 @@ def test_write_students_information_created_file(students):
         (
             [
                 Group(
-                    specialty=Specialty("English", 1),
+                    speciality=Specialty("English", 1),
                     course=2,
                     students=[
                         basic_student(),
@@ -297,7 +297,7 @@ def test_write_students_information_created_file(students):
                     ],
                 ),
                 Group(
-                    specialty=Specialty("English", 2),
+                    speciality=Specialty("English", 2),
                     course=1,
                     students=[basic_student()],
                 ),
