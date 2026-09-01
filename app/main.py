@@ -30,7 +30,8 @@ class Group:
 def write_groups_information(groups: list[Group]) -> int:
     with open("groups.pickle", "wb") as groups_file:
         pickle.dump(groups, groups_file)
-    return 0 or max(len(group.students) for group in groups)
+    number_of_students = [len(group.students) for group in groups]
+    return max(number_of_students) if number_of_students else 0
 
 
 def write_students_information(students: list[Student]) -> int:
