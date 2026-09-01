@@ -43,7 +43,7 @@ def read_groups_information() -> list[str]:
     with open("groups.pickle", "rb") as groups_file:
         groups = pickle.load(groups_file)
 
-    all_specialties = [group.speciality.name for group in groups]
+    all_specialties = [group.specialty.name for group in groups]
 
     return list(dict.fromkeys(all_specialties))
 
