@@ -23,6 +23,36 @@ class Student:
 
 @dataclasses.dataclass
 class Group:
-    speciality: Specialty
+    specialty: Specialty
     course: int
     students: list[Student]
+
+
+def write_groups_information(list_of_groups: list[Group]) -> int:
+    with open("groups.pickle", "wb") as file:
+        pickle.dump(list_of_groups, file)
+
+    if not list_of_groups:
+        return 0
+    return max(len(group.students) for group in list_of_groups)
+
+
+def write_students_information(list_of_students: list[Student]) -> int:
+    with open("students.pickle", "wb") as file:
+        pickle.dump(list_of_students, file)
+
+    return len(list_of_students)
+
+
+def read_groups_information() -> list:
+    with open("groups.pickle", "rb") as file:
+        list_of_groups = pickle.load(file)
+
+    return list({group.specialty.name for group in list_of_groups})
+
+
+def read_students_information() -> list[Student]:
+    with open("students.pickle", "rb") as file:
+        list_of_students = pickle.load(file)
+
+    return [student for student in list_of_students]
