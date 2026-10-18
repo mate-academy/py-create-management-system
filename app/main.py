@@ -42,6 +42,7 @@ def write_students_information(students: list[Student]) -> int:
         pickle.dump(students, file)
     return len(students)
 
+
 def read_groups_information() -> list[Specialty]:
     with open("groups.pickle", "rb") as file:
         groups = pickle.load(file)
@@ -50,6 +51,7 @@ def read_groups_information() -> list[Specialty]:
             if group.specialty.name not in specialties:
                 specialties.append(group.specialty.name)
     return specialties
+
 
 def read_students_information() -> list[Student]:
     with open("students.pickle", "rb") as file:
