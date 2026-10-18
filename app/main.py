@@ -50,3 +50,7 @@ def read_groups_information() -> list[Specialty]:
             if group.specialty not in specialties:
                 specialties.append(group.specialty)
     return specialties
+
+def read_students_information() -> list[Student]:
+    with open("students.pickle", "rb") as file:
+        return pickle.load(file)
