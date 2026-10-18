@@ -35,3 +35,9 @@ def write_groups_information(groups: list[Group]) -> int:
         if len(group.students) > max_students:
             max_students = len(group.students)
     return max_students
+
+
+def write_students_information(students: list[Student]) -> int:
+    with open("students.pickle", "wb") as file:
+        pickle.dumb(students)
+    return len(students)
