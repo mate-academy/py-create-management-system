@@ -29,7 +29,7 @@ class Grupo:
 
 def escrever_informações_de_grupos(groups: list[Grupo]) -> int:
     """
-    Grava todas as instâncias de Grupo no arquivo 'groups.pickle' 
+    Grava todas as instâncias de Grupo no arquivo 'groups.pickle'
     e retorna o número máximo de alunos entre todos os grupos.
     """
     with open("groups.pickle", "wb") as f:
@@ -43,7 +43,7 @@ def escrever_informações_de_grupos(groups: list[Grupo]) -> int:
 
 def escrever_informações_dos_alunos(students: list[Estudante]) -> int:
     """
-    Grava todas as instâncias de Estudante no arquivo 'students.pickle' 
+    Grava todas as instâncias de Estudante no arquivo 'students.pickle'
     e retorna o número total de alunos.
     """
     with open("students.pickle", "wb") as f:
@@ -55,7 +55,7 @@ def escrever_informações_dos_alunos(students: list[Estudante]) -> int:
 
 def ler_informações_dos_grupos() -> list[str]:
     """
-    Lê os dados do arquivo 'groups.pickle' e retorna uma lista 
+    Lê os dados do arquivo 'groups.pickle' e retorna uma lista
     com os nomes de todas as especialidades, sem repetição.
     """
     groups = []
@@ -75,7 +75,7 @@ def ler_informações_dos_grupos() -> list[str]:
 
 def ler_informações_dos_alunos() -> list[Estudante]:
     """
-    Lê os dados do arquivo 'students.pickle' e retorna 
+    Lê os dados do arquivo 'students.pickle' e retorna
     uma lista com todas as instâncias da classe Estudante.
     """
     students = []
