@@ -46,7 +46,8 @@ def write_students_information(students: list[Student]) -> int:
     return len(students)
 
 
-def read_groups_information() -> listspecialties = []
+def read_groups_information() -> list:
+    specialties = []
 
     with open("groups.pickle", "rb") as file:
         while True:
@@ -62,12 +63,14 @@ def read_groups_information() -> listspecialties = []
     return specialties
 
 
-def read_students_information() -> liststudents = []
+def read_students_information() -> list:
+    students = []
 
     with open("students.pickle", "rb") as file:
         while True:
             try:
                 students.append(pickle.load(file))
+
             except EOFError:
                 break
 
