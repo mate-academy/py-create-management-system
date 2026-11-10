@@ -4,13 +4,13 @@ import pickle
 
 
 @dataclasses.dataclass
-class Especialidade:
+class Specialty:
     name: str
     number: int
 
 
 @dataclasses.dataclass
-class Estudante:
+class Student:
     first_name: str
     last_name: str
     birth_date: datetime
@@ -21,14 +21,14 @@ class Estudante:
 
 
 @dataclasses.dataclass
-class Grupo:
-    specialty: Especialidade
+class Group:
+    specialty: Specialty
     course: int
-    students: list[Estudante]
+    students: list[Student]
 
 
-def escrever_informações_de_grupos(groups: list[Grupo]) -> int:
-    """Grava as instâncias de Grupo no arquivo 'groups.pickle'
+def write_groups_information(groups: list[Group]) -> int:
+    """Grava as instâncias de Group no arquivo 'groups.pickle'
     e retorna o número máximo de alunos entre todos os grupos."""
     with open("groups.pickle", "wb") as f:
         for group in groups:
@@ -39,8 +39,8 @@ def escrever_informações_de_grupos(groups: list[Grupo]) -> int:
     return max(len(group.students) for group in groups)
 
 
-def escrever_informações_dos_alunos(students: list[Estudante]) -> int:
-    """Grava as instâncias de Estudante no arquivo 'students.pickle'
+def write_students_information(students: list[Student]) -> int:
+    """Grava as instâncias de Student no arquivo 'students.pickle'
     e retorna o total de alunos."""
     with open("students.pickle", "wb") as f:
         for student in students:
@@ -49,7 +49,7 @@ def escrever_informações_dos_alunos(students: list[Estudante]) -> int:
     return len(students)
 
 
-def ler_informações_dos_grupos() -> list[str]:
+def read_groups_information() -> list[str]:
     """Lê os dados do arquivo 'groups.pickle' e retorna
     os nomes únicos de todas as especialidades dos grupos."""
     specialty_names = set()
@@ -68,9 +68,9 @@ def ler_informações_dos_grupos() -> list[str]:
     return list(specialty_names)
 
 
-def ler_informações_dos_alunos() -> list[Estudante]:
+def read_students_information() -> list[Student]:
     """Lê os dados do arquivo 'students.pickle' e retorna
-    uma lista com todas as instâncias de Estudante."""
+    uma lista com todas as instâncias de Student."""
     students = []
 
     try:
